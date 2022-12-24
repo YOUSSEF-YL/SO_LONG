@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2022/12/23 22:22:49 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/24 11:57:29 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,53 +112,29 @@ int check_pathe(char **map)
 
 void scratch(char ** map ,int j , int i)
 {
-	// e  & c & 0 into "p"
-	//int j;
-	//int i;
-	int k;
-	k = 1;
-	//j = 1;
-	// if no conditin is truee ireak
-	// while (k == 1)
-	// {
-	
-		//i = 0;
-		
-		// while (map[j][i])
-		// {
 			if (map[j][i] == 'p')
 			{
-			 	 k = 0;
 				if (map[j+1][i] == '0' || map[j+1][i] == 'c' || map[j+1][i] == 'e')//up
 					{
 						map[j+1][i] = 'p';
-						k = 1;
 						scratch(map,j+1,i );
 					}
 				if (map[j-1][i] == '0' || map[j-1][i] == 'c' || map[j-1][i] == 'e')//down
 					{
 						map[j-1][i] = 'p';
-						k = 1;
 						scratch(map,j-1 , i);
 					}
 				if (map[j][i+1] == '0' || map[j][i+1] == 'c' || map[j][i+1] == 'e')//r
 					{
 						map[j][i+1] = 'p';
-						k = 1;
 						scratch(map,j , i+1);
 					}
 				if (map[j][i-1] == '0' || map[j][i-1] == 'c' || map[j][i-1] == 'e')//l
 					{
 						map[j][i-1] = 'p';
-						k = 1;
-						//i = 0;
 						scratch(map, j, i-1);
 					}
 			}
-			
-		// 	i++;
-		// }
-
 		j++;
 	// }
 	//int j,i;

@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/23 20:21:08 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/24 13:17:33 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@
 # include <mlx.h>
 # include "get_next_line.h"
 
+
+
+
+
+typedef struct	s_vars {
+	void	*mlx;
+	void	*win;
+}				t_vars;
+
 char ** get_map(int fd);
 int check_liens_l(char **map);
 int map_lines(char* map);
@@ -28,6 +37,8 @@ int check_walls(char **map);
 int check_pathe(char **map);
 void scratch(char ** map,int i , int j);
 int map_req(char ** map);
+int	key_hook(int keycode, t_vars *vars);
+
 struct map{
   int x;
   int y;
@@ -47,5 +58,7 @@ struct vars{
   char** map;
 };
 typedef struct map map;
+
+
 
 #endif
