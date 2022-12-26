@@ -6,32 +6,32 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/26 13:10:15 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/26 20:10:44 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
  # include "so_long.h"
 
-t_va  get_ppos (char ** map)
-{
-    struct vars var;
-    var.i= 0;
-	var.j = 0;
-	while(map[var.j])
-	{
-		var.i = 0;
-		while (map[var.j][var.i])
-		{
-			if (map[var.j][var.i] == 'p')
-               break;
-			var.i++;
-		}
-		var.j++;
-	}
+// t_va  get_ppos (char ** map)
+// {
+//     struct vars var;
+//     var.i= 0;
+// 	var.j = 0;
+// 	while(map[var.j])
+// 	{
+// 		var.i = 0;
+// 		while (map[var.j][var.i])
+// 		{
+// 			if (map[var.j][var.i] == 'p')
+//                break;
+// 			var.i++;
+// 		}
+// 		var.j++;
+// 	}
 
      
-    return (var);
-}
+//     return (var);
+// }
 
 
 int	key_hook(char ** map ,int keycode)

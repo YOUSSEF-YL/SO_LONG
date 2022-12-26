@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/26 14:56:07 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/26 20:31:08 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,39 @@ void apptowindow(void* mlx, void *mlx_win,int img_width,int img_height,char* img
 // 	printf("%d\n",keycode);
 // 	return (0);
 // }
+void draw_to_win(t_vars var,char ** map)
+{
+	t_intvars intvar;
+	t_map	map_util;
 
+	map_util.y = 0;
+	map_util.x = 0;
+	
+	intvar.j = 0;
+	intvar.i = 0;
+	while (map[intvar.j])
+	{
+		intvar.i = 0;
+		while (map[intvar.j][intvar.i])
+		{
+			if (map[intvar.j][intvar.i] == '1')
+				apptowindow(var.mlx, var.mlx_win, var.img_width,var.img_height,"assets/wall.xpm",map_util.x,map_util.y);
+			else if (map[intvar.j][intvar.i] == '0')
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",map_util.x,map_util.y);
+			else if (map[intvar.j][intvar.i] == 'C')
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",map_util.x,map_util.y);
+			else if (map[intvar.j][intvar.i] == 'E')
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",map_util.x,map_util.y);
+			else if (map[intvar.j][intvar.i] == 'P')
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/player.xpm",map_util.x,map_util.y);
+			intvar.i++;
+			map_util.x = map_util.x + 50;
+		}	
+		map_util.x = 0;
+		map_util.y = map_util.y + 50;
+		intvar.j++;
+	}
+}
 int	main(void)
 {
 	t_vars var;
@@ -105,42 +137,7 @@ int	main(void)
 	int index_x;
 	index_y = 0;
 	index_x = 0;
-	while (var.map[j])
-	{
-		i = 0;
-		while (var.map[j][i])
-		{
-			if (var.map[j][i] == '1')
-			{
-				apptowindow(var.mlx, var.mlx_win, var.img_width,var.img_height,"assets/wall.xpm",index_x,index_y);
-				
-			}
-			else if (var.map[j][i] == '0')
-			{
-				//apptowindow(mlx,mlx_win,img_width,img_height,"assets/wall.xpm",index_x,index_y);
-			}
-			else if (var.map[j][i] == 'C')
-			{
-				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",index_x,index_y);
-			}
-			else if (var.map[j][i] == 'E')
-			{
-				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",index_x,index_y);
-			}
-			else if (var.map[j][i] == 'P')
-			{
-				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/player.xpm",index_x,index_y);
-			}
-			
-			i++;
-			index_x = index_x + 50;
-		}	
-
-		index_x =0;
-		index_y = index_y + 50;
-		//printf("%s",map[j]);
-		j++;
-	}
+	draw_to_win(var,var.map);
 	 mlx_loop(var.mlx);
 	// t_vars	vars;
 

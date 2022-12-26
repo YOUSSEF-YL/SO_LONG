@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/26 14:50:49 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/26 20:21:00 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 typedef struct	s_vars {
 	void	*mlx;
 	void	*win;
-  void	*mlx;
 	void	*mlx_win;
   void   *relative_path;
 	int		img_width ;
@@ -41,7 +40,17 @@ typedef struct vars{
   int p;
 	int e;
 	int c;
-} t_va;
+} t_intvars;
+
+typedef struct t_map{
+  int x;
+  int y;
+  char* exit;
+  char* player;
+  char* empty;
+  char* wall;
+  char* collectible;
+} t_map;
 
 char ** get_map(int fd);
 int check_liens_l(char **map);
@@ -51,17 +60,10 @@ int check_pathe(char **map);
 void scratch(char ** map,int i , int j);
 int map_req(char ** map);
 int	key_hook(char ** map,int keycode);
-t_va  get_ppos (char ** map);
+void draw_to_win(t_vars var,char ** map);
+//t_va  get_ppos (char ** map);
 
-struct map{
-  int x;
-  int y;
-  char* exit;
-  char* player;
-  char* empty;
-  char* wall;
-  char* collectible;
-};
+
 
 
 typedef struct map map;
