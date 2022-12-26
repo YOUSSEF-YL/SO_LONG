@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/24 13:21:47 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/26 14:56:07 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,37 +62,37 @@ void apptowindow(void* mlx, void *mlx_win,int img_width,int img_height,char* img
 	
 	mlx_put_image_to_window(mlx,mlx_win, xpm,x,y);
 }
-int	key_hook(int keycode, t_vars *vars)
-{
-	printf("%d\n",keycode);
-	return (0);
-}
+
+// int	key_hook(int keycode, t_vars *vars)
+// {
+// 	printf("%d\n",keycode);
+// 	return (0);
+// }
+
 int	main(void)
 {
-	// void	*mlx;
-	// void	*mlx_win;
-    // void    *relative_path;
+	t_vars var;
+	
 	// int		img_width = 1700;
 	// int		img_height = 1700;
-	// void	*img = mlx_new_image(mlx, img_width, img_height);
 
-    // mlx = mlx_init();
-	// mlx_win = mlx_new_window(mlx, 1500, 800, "So_long");
+    var.mlx = mlx_init();
+	//void *img = mlx_new_image(mlx, img_width, img_height);
+	var.mlx_win = mlx_new_window(var.mlx, 1500, 800, "So_long");
 	
-	// void *xpm = mlx_xpm_file_to_image(mlx,"assets/bg.xpm", &img_width, &img_height);
+	void *xpm = mlx_xpm_file_to_image(var.mlx,"assets/bg.xpm", &var.img_width, &var.img_height);
 	
-	// mlx_put_image_to_window(mlx,mlx_win, xpm,0,0);
+	mlx_put_image_to_window(var.mlx,var.mlx_win, xpm,0,0);
    
    
 	
-    char **map;
-	map = (char **)malloc (map_lines("map.txt") * sizeof(char *));
-	// int i ;
-	// int j ;
-	// j = 0;
-	// i = 0;
+	var.map = (char **)malloc (map_lines("map.txt") * sizeof(char *));
+	int i ;
+	int j ;
+	j = 0;
+	i = 0;
 
-	map = get_map(map_lines("map.txt"));
+	var.map = get_map(map_lines("map.txt"));
 	
 	int fd = open("map.txt", O_RDONLY); 
 	
@@ -101,53 +101,53 @@ int	main(void)
 	//scratch(map,13,1);
 
 	// printf("%d",map_req( map));
-	// int index_y;
-	// int index_x;
-	// index_y = 0;
-	// index_x = 0;
-	// while (map[j])
-	// {
-	// 	i = 0;
-	// 	while (map[j][i])
-	// 	{
-	// 		if (map[j][i] == '1')
-	// 		{
-	// 			apptowindow(mlx,mlx_win,img_width,img_height,"assets/wall.xpm",index_x,index_y);
+	int index_y;
+	int index_x;
+	index_y = 0;
+	index_x = 0;
+	while (var.map[j])
+	{
+		i = 0;
+		while (var.map[j][i])
+		{
+			if (var.map[j][i] == '1')
+			{
+				apptowindow(var.mlx, var.mlx_win, var.img_width,var.img_height,"assets/wall.xpm",index_x,index_y);
 				
-	// 		}
-	// 		else if (map[j][i] == '0')
-	// 		{
-	// 			//apptowindow(mlx,mlx_win,img_width,img_height,"assets/wall.xpm",index_x,index_y);
-	// 		}
-	// 		else if (map[j][i] == 'C')
-	// 		{
-	// 			apptowindow(mlx,mlx_win,img_width,img_height,"assets/wall.xpm",index_x,index_y);
-	// 		}
-	// 		else if (map[j][i] == 'E')
-	// 		{
-	// 			apptowindow(mlx,mlx_win,img_width,img_height,"assets/wall.xpm",index_x,index_y);
-	// 		}
-	// 		else if (map[j][i] == 'P')
-	// 		{
-	// 			apptowindow(mlx,mlx_win,img_width,img_height,"assets/player.xpm",index_x,index_y);
-	// 		}
+			}
+			else if (var.map[j][i] == '0')
+			{
+				//apptowindow(mlx,mlx_win,img_width,img_height,"assets/wall.xpm",index_x,index_y);
+			}
+			else if (var.map[j][i] == 'C')
+			{
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",index_x,index_y);
+			}
+			else if (var.map[j][i] == 'E')
+			{
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",index_x,index_y);
+			}
+			else if (var.map[j][i] == 'P')
+			{
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/player.xpm",index_x,index_y);
+			}
 			
-	// 		i++;
-	// 		index_x = index_x + 50;
-	// 	}	
+			i++;
+			index_x = index_x + 50;
+		}	
 
-	// 	index_x =0;
-	// 	index_y = index_y + 50;
-	// 	//printf("%s",map[j]);
-	// 	j++;
-	// }
-	 // mlx_loop(mlx);
-	t_vars	vars;
+		index_x =0;
+		index_y = index_y + 50;
+		//printf("%s",map[j]);
+		j++;
+	}
+	 mlx_loop(var.mlx);
+	// t_vars	vars;
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 640, 480, "Hello world!");
-	mlx_key_hook(vars.win, key_hook, &vars);
-	mlx_loop(vars.mlx);
+	// vars.mlx = mlx_init();
+	// vars.win = mlx_new_window(vars.mlx, 640, 480, "Hello world!");
+	// mlx_key_hook(vars.win, key_hook, &vars);
+	//mlx_loop(vars.mlx);
 }
 
 

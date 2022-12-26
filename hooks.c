@@ -6,11 +6,33 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/24 20:21:31 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/26 13:10:15 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "so_long.h"
+ # include "so_long.h"
+
+t_va  get_ppos (char ** map)
+{
+    struct vars var;
+    var.i= 0;
+	var.j = 0;
+	while(map[var.j])
+	{
+		var.i = 0;
+		while (map[var.j][var.i])
+		{
+			if (map[var.j][var.i] == 'p')
+               break;
+			var.i++;
+		}
+		var.j++;
+	}
+
+     
+    return (var);
+}
+
 
 int	key_hook(char ** map ,int keycode)
 {
@@ -53,6 +75,8 @@ int	key_hook(char ** map ,int keycode)
         mlx_clear_window(vars.mlx,vars.win);
     }
     
+
+   
     
     return (1);
 }
