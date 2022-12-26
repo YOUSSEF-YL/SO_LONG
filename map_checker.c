@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2022/12/24 11:57:29 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/26 22:17:50 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ int c_cherch(char *str ,char c)
 
 int check_liens_l(char **map)
 {
-    int j;
-    j = 1;
-    while (j <= map_lines("map.txt")-1)
+	t_intvars intvar;
+
+    intvar.i = 1;
+	intvar.j = map_lines("map.txt")-1;
+    while (intvar.i <= intvar.j)
 	{
-		if (ft_strlen(map[0]) != ft_strlen(map[j]))
+		if (ft_strlen(map[0]) != ft_strlen(map[intvar.i]))
 				return (1);
-		j++;
+		intvar.i++;
 	}
 	
  return(0);
@@ -43,31 +45,30 @@ int check_liens_l(char **map)
 
 int check_walls(char **map)
 {
-    int j;
-	int i;
+	t_intvars intvar;
 	
-    j = 0;
-	i = 0;
+    intvar.j = 0;
+	intvar.i = 0;
 	
 	// while (j <= map_lines("map.txt")-1)
 	// {
-		while (i < ft_strlen(map[j])-1) //-1
+		while (intvar.i < ft_strlen(map[intvar.j])-1) //-1
 		{
-			if (map[0][i] != '1') //top_l
+			if (map[0][intvar.i] != '1') //top_l
 				return (1);
-			if (map[map_lines("map.txt")-1][i] != '1') // last_l
+			if (map[map_lines("map.txt")-1][intvar.i] != '1') // last_l
 				return (1);
-			 i++;
+			 intvar.i++;
 		}
 	//}
-	int f = ft_strlen(map[j])-2;
-	while (map[j])
+	intvar.e = ft_strlen(map[intvar.j])-2;
+	while (map[intvar.j])
 	{
-			if (map[j][f] != '1') //R_l
+			if (map[intvar.j][intvar.e] != '1') //R_l
 				return (1);	
-			if (map[j][0] != '1') //l_l
+			if (map[intvar.j][0] != '1') //l_l
 				return (1);
-		j++;
+		intvar.j++;
 	}
 	
  return(0);
@@ -87,52 +88,31 @@ int get_c_i(char* line,int c)
 	return (0);
 }
 
-int check_pathe(char **map)
-{
-	int j;
-	int i;
-	j =0;
-	while (map[j])
-	{
-		i = 0;
-		int res;
-		
-		res = get_c_i(map[j],'p');
-		while (map[j][i])
-		{
-			
-			if (res > 0)
-				return (res);
-			i++;
-		}
-		j ++;
-	}
-	return(0);
-}
 
-void scratch(char ** map ,int j , int i)
+
+void check_pathe(char ** map ,int j , int i)
 {
 			if (map[j][i] == 'p')
 			{
 				if (map[j+1][i] == '0' || map[j+1][i] == 'c' || map[j+1][i] == 'e')//up
 					{
 						map[j+1][i] = 'p';
-						scratch(map,j+1,i );
+						check_pathe(map,j+1,i );
 					}
 				if (map[j-1][i] == '0' || map[j-1][i] == 'c' || map[j-1][i] == 'e')//down
 					{
 						map[j-1][i] = 'p';
-						scratch(map,j-1 , i);
+						check_pathe(map,j-1 , i);
 					}
 				if (map[j][i+1] == '0' || map[j][i+1] == 'c' || map[j][i+1] == 'e')//r
 					{
 						map[j][i+1] = 'p';
-						scratch(map,j , i+1);
+						check_pathe(map,j , i+1);
 					}
 				if (map[j][i-1] == '0' || map[j][i-1] == 'c' || map[j][i-1] == 'e')//l
 					{
 						map[j][i-1] = 'p';
-						scratch(map, j, i-1);
+						check_pathe(map, j, i-1);
 					}
 			}
 		j++;

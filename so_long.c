@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/26 20:31:08 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/26 22:36:12 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 
 
 
-// char **get_map(int fd)
-// {
-	
-// }
+
 
 int map_lines(char* map)
 {
@@ -35,6 +32,7 @@ int map_lines(char* map)
 	close(fd);
 	return(i );
 }
+
 char **get_map(int lines)
 {
 	char **map;
@@ -101,6 +99,8 @@ void draw_to_win(t_vars var,char ** map)
 		intvar.j++;
 	}
 }
+
+
 int	main(void)
 {
 	t_vars var;
@@ -133,18 +133,13 @@ int	main(void)
 	//scratch(map,13,1);
 
 	// printf("%d",map_req( map));
-	int index_y;
-	int index_x;
-	index_y = 0;
-	index_x = 0;
-	draw_to_win(var,var.map);
-	 mlx_loop(var.mlx);
-	// t_vars	vars;
-
-	// vars.mlx = mlx_init();
-	// vars.win = mlx_new_window(vars.mlx, 640, 480, "Hello world!");
-	// mlx_key_hook(vars.win, key_hook, &vars);
-	//mlx_loop(vars.mlx);
+	
+	//draw_to_win(var,var.map);
+	// mlx_loop(var.mlx);
+	t_intvars intvar;
+	intvar = get_ppos (var.map);
+	printf("%d\n",intvar.i);
+	printf("%d\n",intvar.j);
 }
 
 
