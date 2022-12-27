@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/27 11:46:32 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/27 13:08:54 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ void draw_to_win(t_vars var,char ** map)
 		{
 			if (map[intvar.j][intvar.i] == '1')
 				apptowindow(var.mlx, var.mlx_win, var.img_width,var.img_height,"assets/wall.xpm",map_util.x,map_util.y);
-			else if (map[intvar.j][intvar.i] == '0')
-				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",map_util.x,map_util.y);
+			// else if (map[intvar.j][intvar.i] == '0')
+			// 	 apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",map_util.x,map_util.y);
 			else if (map[intvar.j][intvar.i] == 'C')
-				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",map_util.x,map_util.y);
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/collectible.xpm",map_util.x,map_util.y);
 			else if (map[intvar.j][intvar.i] == 'E')
-				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",map_util.x,map_util.y);
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/exit.xpm",map_util.x,map_util.y);
 			else if (map[intvar.j][intvar.i] == 'P')
 				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/player.xpm",map_util.x,map_util.y);
 			intvar.i++;
