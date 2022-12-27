@@ -6,13 +6,13 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/26 22:39:42 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/27 11:46:00 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
  # include "so_long.h"
 
-t_intvars  get_ppos (char ** map)
+t_intvars  get_plyer_pos (char ** map)
 {
     t_intvars var;
     var.i= 0;
@@ -26,10 +26,10 @@ t_intvars  get_ppos (char ** map)
                break;
 			var.i++;
 		}
+        if (map[var.j][var.i] == 'P')
+               break;
 		var.j++;
 	}
-
-     
     return (var);
 }
 

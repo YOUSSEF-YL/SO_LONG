@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/26 22:36:12 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/27 11:46:32 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,8 @@ int	main(void)
 	//draw_to_win(var,var.map);
 	// mlx_loop(var.mlx);
 	t_intvars intvar;
-	intvar = get_ppos (var.map);
+	intvar = get_plyer_pos (var.map);
+	
 	printf("%d\n",intvar.i);
 	printf("%d\n",intvar.j);
 }
