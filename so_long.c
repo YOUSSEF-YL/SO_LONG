@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/27 13:08:54 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/27 19:31:59 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,7 @@ void apptowindow(void* mlx, void *mlx_win,int img_width,int img_height,char* img
 	mlx_put_image_to_window(mlx,mlx_win, xpm,x,y);
 }
 
-// int	key_hook(int keycode, t_vars *vars)
-// {
-// 	printf("%d\n",keycode);
-// 	return (0);
-// }
+
 void draw_to_win(t_vars var,char ** map)
 {
 	t_intvars intvar;
@@ -100,6 +96,13 @@ void draw_to_win(t_vars var,char ** map)
 	}
 }
 
+int	key_hook(int keycode, t_vars *var)
+{
+	//printf("%d\n",keycode);
+	printf("%d",var->img_height);
+	printf("%d", keycode);
+	return (0);
+}
 
 int	main(void)
 {
@@ -133,14 +136,17 @@ int	main(void)
 	//scratch(map,13,1);
 
 	// printf("%d",map_req( map));
+	draw_to_win(var,var.map);
+	//mlx_key_hook(var.win, key_hook, &var);
+	mlx_key_hook(var.win, &key_hook, &var);
+	mlx_loop(var.mlx);
 	
-	//draw_to_win(var,var.map);
-	// mlx_loop(var.mlx);
-	t_intvars intvar;
-	intvar = get_plyer_pos (var.map);
 	
-	printf("%d\n",intvar.i);
-	printf("%d\n",intvar.j);
+	// t_intvars intvar;
+	// intvar = get_plyer_pos (var.map);
+	
+	// printf("%d\n",intvar.i);
+	// printf("%d\n",intvar.j);
 }
 
 
