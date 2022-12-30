@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/30 16:28:21 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/30 19:27:14 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,12 @@ void draw_to_win(t_vars var,char ** map)
 	
 // 	return (1);
 // }
+void put_bg(t_vars var)
+{
+	void *xpm = mlx_xpm_file_to_image(var.mlx,"assets/bg.xpm", &var.img_width, &var.img_height);
+	mlx_put_image_to_window(var.mlx,var.mlx_win, xpm,0,0);
+}
+
 
 int	main(void)
 {
@@ -113,9 +119,8 @@ int	main(void)
     var.mlx = mlx_init();
 	//void *img = mlx_new_image(mlx, img_width, img_height);
 	var.mlx_win = mlx_new_window(var.mlx, 1500, 800, "So_long");
-	void *xpm = mlx_xpm_file_to_image(var.mlx,"assets/bg.xpm", &var.img_width, &var.img_height);
 	
-	mlx_put_image_to_window(var.mlx,var.mlx_win, xpm,0,0);
+	
    
    
 	
@@ -123,18 +128,16 @@ int	main(void)
 
 
 	var.map = get_map(map_lines("map.txt"));
-	
+
 	int fd = open("map.txt", O_RDONLY); 
-	
-	
+
+	put_bg(var);
 	draw_to_win(var,var.map);
 
-	mlx_key_hook(var.mlx_win, &key_hook, &var);
-	
+	mlx_key_hook(var.mlx_win, key_hook, &var);
+
 	mlx_loop(var.mlx);
-	
-	
-	
+
 }
 
 
