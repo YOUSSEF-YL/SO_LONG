@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/27 19:31:59 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/30 16:28:21 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,12 @@ void draw_to_win(t_vars var,char ** map)
 	}
 }
 
-int	key_hook(int keycode, t_vars *var)
-{
-	//printf("%d\n",keycode);
-	printf("%d",var->img_height);
-	printf("%d", keycode);
-	return (0);
-}
+// int	key_hook(int keycode, t_vars *vars)
+// {
+// 	 printf("%d\n",keycode);
+	
+// 	return (1);
+// }
 
 int	main(void)
 {
@@ -114,7 +113,6 @@ int	main(void)
     var.mlx = mlx_init();
 	//void *img = mlx_new_image(mlx, img_width, img_height);
 	var.mlx_win = mlx_new_window(var.mlx, 1500, 800, "So_long");
-	
 	void *xpm = mlx_xpm_file_to_image(var.mlx,"assets/bg.xpm", &var.img_width, &var.img_height);
 	
 	mlx_put_image_to_window(var.mlx,var.mlx_win, xpm,0,0);
@@ -122,31 +120,21 @@ int	main(void)
    
 	
 	var.map = (char **)malloc (map_lines("map.txt") * sizeof(char *));
-	int i ;
-	int j ;
-	j = 0;
-	i = 0;
+
 
 	var.map = get_map(map_lines("map.txt"));
 	
 	int fd = open("map.txt", O_RDONLY); 
 	
-	//printf("%d",map_lines("map.txt"));
-	//printf("%d",check_pathe(map));
-	//scratch(map,13,1);
-
-	// printf("%d",map_req( map));
+	
 	draw_to_win(var,var.map);
-	//mlx_key_hook(var.win, key_hook, &var);
-	mlx_key_hook(var.win, &key_hook, &var);
+
+	mlx_key_hook(var.mlx_win, &key_hook, &var);
+	
 	mlx_loop(var.mlx);
 	
 	
-	// t_intvars intvar;
-	// intvar = get_plyer_pos (var.map);
 	
-	// printf("%d\n",intvar.i);
-	// printf("%d\n",intvar.j);
 }
 
 
