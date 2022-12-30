@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/30 19:51:56 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/30 21:04:40 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,27 +68,32 @@ int	key_hook(int keycode,t_vars *vars)
 		printmap(vars->map);
      //  mlx_clear_window(vars->mlx,vars->win);
     }
-    if ((keycode == 124 || keycode == 2)  && vars->map[intvar.j][intvar.i-1] != 'E' && vars->map[intvar.j][intvar.i-1] != '1') //L
+    if ((keycode == 123 || keycode == 0)  && vars->map[intvar.j][intvar.i-1] != 'E' && vars->map[intvar.j][intvar.i-1] != '1') //L
     {   
         vars->map[intvar.j][intvar.i-1] = vars->map[intvar.j][intvar.i];
 		vars->map[intvar.j][intvar.i] = '0';
 		put_bg(*vars);
 	    draw_to_win(*vars,vars->map);
 		printmap(vars->map);
-        mlx_clear_window(vars->mlx,vars->win);
+        //mlx_clear_window(vars->mlx,vars->win);
     }
-    // if ((keycode == 125 || keycode == 1) && vars->map[intvar.j+1][intvar.i] != 'E' && vars->map[intvar.j+1][intvar.i] != '1') //d
-    // {
-    //     vars->map[intvar.j-1][intvar.i] = vars->map[intvar.j][intvar.i];
-	// 	vars->map[intvar.j][intvar.i] = '0';
-    //     mlx_clear_window(vars->mlx,vars->win);
-    // }
-    // if ((keycode == 123 || keycode == 0) && vars->map[intvar.j][intvar.i- 1] != 'E' && vars->map[intvar.j][intvar.i -1] != '1') //R
-    // {
-    //     vars->map[intvar.j][intvar.i -1] = vars->map[intvar.j][intvar.i];
-	// 	vars->map[intvar.j][intvar.i] = '0';
-    //     mlx_clear_window(vars->mlx,vars->win);
-    // }
+    if ((keycode == 125 || keycode == 1) && vars->map[intvar.j+1][intvar.i] != 'E' && vars->map[intvar.j+1][intvar.i] != '1') //d
+    {
+        vars->map[intvar.j+1][intvar.i] = vars->map[intvar.j][intvar.i];
+		vars->map[intvar.j][intvar.i] = '0';
+        put_bg(*vars);
+	    draw_to_win(*vars,vars->map);
+		printmap(vars->map);
+    }
+    if ((keycode == 124 || keycode == 2) && vars->map[intvar.j][intvar.i+ 1] != 'E' && vars->map[intvar.j][intvar.i +1] != '1') //R
+    {
+        vars->map[intvar.j][intvar.i +1] = vars->map[intvar.j][intvar.i];
+		vars->map[intvar.j][intvar.i] = '0';
+		put_bg(*vars);
+	    draw_to_win(*vars,vars->map);
+		printmap(vars->map);
+        //mlx_clear_window(vars->mlx,vars->win);
+    }
 	// printf("%d",intvar.i);
 	// printf("+++++++++++++\n");
 	// printf("%d",intvar.j);
