@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/30 21:49:46 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/31 15:32:30 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void printmap(char ** map)
 int	key_hook(int keycode,t_vars *vars)
 {
    t_intvars intvar;
-//    t_vars	var.;
-
 	 intvar = get_plyer_pos (vars->map);
 	 static int c = 0;
 	 
@@ -68,7 +66,6 @@ int	key_hook(int keycode,t_vars *vars)
 	   vars->map[intvar.j][intvar.i] = '0';
 	    put_bg(*vars);
 	    draw_to_win(*vars,vars->map);
-		printmap(vars->map);
 		c += 1;
      //  mlx_clear_window(vars->mlx,vars->win);
     }
@@ -78,7 +75,6 @@ int	key_hook(int keycode,t_vars *vars)
 		vars->map[intvar.j][intvar.i] = '0';
 		put_bg(*vars);
 	    draw_to_win(*vars,vars->map);
-		printmap(vars->map);
 		c += 1;
         //mlx_clear_window(vars->mlx,vars->win);
     }
@@ -88,7 +84,6 @@ int	key_hook(int keycode,t_vars *vars)
 		vars->map[intvar.j][intvar.i] = '0';
         put_bg(*vars);
 	    draw_to_win(*vars,vars->map);
-		printmap(vars->map);
 		c += 1;
     }
     if ((keycode == 124 || keycode == 2) && vars->map[intvar.j][intvar.i+ 1] != 'E' && vars->map[intvar.j][intvar.i +1] != '1') //R
@@ -97,14 +92,16 @@ int	key_hook(int keycode,t_vars *vars)
 		vars->map[intvar.j][intvar.i] = '0';
 		put_bg(*vars);
 	    draw_to_win(*vars,vars->map);
-		printmap(vars->map);
 		c += 1;
         //mlx_clear_window(vars->mlx,vars->win);
     }
-	// printf("%d",intvar.i);
-	// printf("+++++++++++++\n");
-	// printf("%d",intvar.j);
- 	// printf("+++++++++++++\n");
-	 printf("%s = %d\n","movse",c);
+	if (keycode == 53)
+	{
+		//mlx_destroy_window(vars->mlx, vars->win);
+			exit(0);
+	}
+	
+	printf("%d",keycode);
+	printf("%s = %d\n","movse",c);
     return (0);
 }
