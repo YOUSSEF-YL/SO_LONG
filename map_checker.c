@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2022/12/26 22:17:50 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/31 17:27:41 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int check_liens_l(char **map)
 	t_intvars intvar;
 
     intvar.i = 1;
-	intvar.j = map_lines("map.txt")-1;
+	intvar.j = map_lines("map.ber")-1;
     while (intvar.i <= intvar.j)
 	{
 		if (ft_strlen(map[0]) != ft_strlen(map[intvar.i]))
@@ -50,13 +50,13 @@ int check_walls(char **map)
     intvar.j = 0;
 	intvar.i = 0;
 	
-	// while (j <= map_lines("map.txt")-1)
+	// while (j <= map_lines("map.ber")-1)
 	// {
 		while (intvar.i < ft_strlen(map[intvar.j])-1) //-1
 		{
 			if (map[0][intvar.i] != '1') //top_l
 				return (1);
-			if (map[map_lines("map.txt")-1][intvar.i] != '1') // last_l
+			if (map[map_lines("map.ber")-1][intvar.i] != '1') // last_l
 				return (1);
 			 intvar.i++;
 		}

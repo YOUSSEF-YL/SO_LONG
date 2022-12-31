@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/30 19:27:14 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/31 17:27:14 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ char **get_map(int lines)
 	int i ;
 	i = 0;
 
-	map = (char **)malloc (map_lines("map.txt") * sizeof(char *));
+	map = (char **)malloc (map_lines("map.ber") * sizeof(char *));
 	int fd;
-	fd = open("map.txt", O_RDONLY);
+	fd = open("map.ber", O_RDONLY);
 	
 
 	while (i <= lines-1 )
@@ -50,7 +50,7 @@ char **get_map(int lines)
 		i++;
 	}
 	close(fd);
-	map[map_lines("map.txt")] = 0;
+	map[map_lines("map.ber")] = 0;
 	return(map);
 }
 
@@ -124,12 +124,12 @@ int	main(void)
    
    
 	
-	var.map = (char **)malloc (map_lines("map.txt") * sizeof(char *));
+	var.map = (char **)malloc (map_lines("map.ber") * sizeof(char *));
 
 
-	var.map = get_map(map_lines("map.txt"));
+	var.map = get_map(map_lines("map.ber"));
 
-	int fd = open("map.txt", O_RDONLY); 
+	int fd = open("map.ber", O_RDONLY); 
 
 	put_bg(var);
 	draw_to_win(var,var.map);
