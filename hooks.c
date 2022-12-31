@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/31 15:32:30 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/31 17:21:19 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ void printmap(char ** map)
 	}
 }
 
+int move_to(t_vars *vars, int j,int i,t_intvars intvar,int c)
+{
+	 vars->map[j][i] = vars->map[intvar.j][intvar.i];
+		vars->map[intvar.j][intvar.i] = '0';
+		put_bg(*vars);
+	    draw_to_win(*vars,vars->map);
+		c += 1;
+	return(c);
+}
+
 int	key_hook(int keycode,t_vars *vars)
 {
    t_intvars intvar;
@@ -60,47 +70,15 @@ int	key_hook(int keycode,t_vars *vars)
 	 printf("%s = %d\n","movse",c);
 	 
     if ((keycode == 126 || keycode == 13) && vars->map[intvar.j-1][intvar.i] != 'E' && vars->map[intvar.j-1][intvar.i] != '1') //up
-    {
-	
-       vars->map[intvar.j-1][intvar.i] =  vars->map[intvar.j][intvar.i];
-	   vars->map[intvar.j][intvar.i] = '0';
-	    put_bg(*vars);
-	    draw_to_win(*vars,vars->map);
-		c += 1;
-     //  mlx_clear_window(vars->mlx,vars->win);
-    }
+		c = move_to(vars,intvar.j-1,intvar.i,intvar,c);
     if ((keycode == 123 || keycode == 0)  && vars->map[intvar.j][intvar.i-1] != 'E' && vars->map[intvar.j][intvar.i-1] != '1') //L
-    {   
-        vars->map[intvar.j][intvar.i-1] = vars->map[intvar.j][intvar.i];
-		vars->map[intvar.j][intvar.i] = '0';
-		put_bg(*vars);
-	    draw_to_win(*vars,vars->map);
-		c += 1;
-        //mlx_clear_window(vars->mlx,vars->win);
-    }
+		c = move_to(vars,intvar.j,intvar.i-1,intvar,c);
     if ((keycode == 125 || keycode == 1) && vars->map[intvar.j+1][intvar.i] != 'E' && vars->map[intvar.j+1][intvar.i] != '1') //d
-    {
-        vars->map[intvar.j+1][intvar.i] = vars->map[intvar.j][intvar.i];
-		vars->map[intvar.j][intvar.i] = '0';
-        put_bg(*vars);
-	    draw_to_win(*vars,vars->map);
-		c += 1;
-    }
+		c = move_to(vars,intvar.j+1,intvar.i,intvar,c);
     if ((keycode == 124 || keycode == 2) && vars->map[intvar.j][intvar.i+ 1] != 'E' && vars->map[intvar.j][intvar.i +1] != '1') //R
-    {
-        vars->map[intvar.j][intvar.i +1] = vars->map[intvar.j][intvar.i];
-		vars->map[intvar.j][intvar.i] = '0';
-		put_bg(*vars);
-	    draw_to_win(*vars,vars->map);
-		c += 1;
-        //mlx_clear_window(vars->mlx,vars->win);
-    }
+		c = move_to(vars,intvar.j,intvar.i+1,intvar,c);
 	if (keycode == 53)
-	{
-		//mlx_destroy_window(vars->mlx, vars->win);
-			exit(0);
-	}
-	
+		exit(0);
 	printf("%d",keycode);
 	printf("%s = %d\n","movse",c);
     return (0);
