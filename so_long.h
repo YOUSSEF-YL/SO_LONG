@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/31 16:18:42 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/31 18:08:50 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@
 # include <stdio.h>
 # include <mlx.h>
 # include "get_next_line.h"
-
-
-
+# include "ft_printf/ft_printf.h"
 
 
 typedef struct	s_vars {
@@ -64,13 +62,5 @@ void draw_to_win(t_vars var,char ** map);
 void printmap(char ** map);
 void put_bg(t_vars var);
 int move_to(t_vars *vars, int j,int i,t_intvars intvar,int c);
-
-
-
-
-
-typedef struct map map;
-
-
 
 #endif

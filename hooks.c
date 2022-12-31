@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/31 17:21:19 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/31 18:19:01 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ int	key_hook(int keycode,t_vars *vars)
    t_intvars intvar;
 	 intvar = get_plyer_pos (vars->map);
 	 static int c = 0;
-	 
-	 printf("%s = %d\n","movse",c);
-	 
+
     if ((keycode == 126 || keycode == 13) && vars->map[intvar.j-1][intvar.i] != 'E' && vars->map[intvar.j-1][intvar.i] != '1') //up
 		c = move_to(vars,intvar.j-1,intvar.i,intvar,c);
     if ((keycode == 123 || keycode == 0)  && vars->map[intvar.j][intvar.i-1] != 'E' && vars->map[intvar.j][intvar.i-1] != '1') //L
@@ -79,7 +77,6 @@ int	key_hook(int keycode,t_vars *vars)
 		c = move_to(vars,intvar.j,intvar.i+1,intvar,c);
 	if (keycode == 53)
 		exit(0);
-	printf("%d",keycode);
-	printf("%s = %d\n","movse",c);
+	ft_printf("%s : %d\n","movse",c);
     return (0);
 }

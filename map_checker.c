@@ -6,26 +6,43 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2022/12/31 17:27:41 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/31 18:02:03 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "so_long.h"
 
 
-int c_cherch(char *str ,char c)
-{
-	int i ;
+// int c_cherch(char *str ,char c)
+// {
+// 	int i ;
 	
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i]== c)
-			return (1);
-		i++;
-	}
-	return(0);
-}
+// 	i = 0;
+// 	while (str[i] != '\0')
+// 	{
+// 		if (str[i]== c)
+// 			return (1);
+// 		i++;
+// 	}
+// 	return(0);
+// }
+
+// int get_c_i(char* line,int c)
+// {
+// 	int  i;
+// 	i = 0;
+// 	while (line[i] != '\0')
+// 	{
+// 		if (line[i] ==  c)
+// 		{
+// 			return (i);
+// 		}
+// 		i++;
+// 	}
+// 	return (0);
+// }
+
+
 
 int check_liens_l(char **map)
 {
@@ -39,7 +56,6 @@ int check_liens_l(char **map)
 				return (1);
 		intvar.i++;
 	}
-	
  return(0);
 }
 
@@ -73,21 +89,6 @@ int check_walls(char **map)
 	
  return(0);
 }
-int get_c_i(char* line,int c)
-{
-	int  i;
-	i = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] ==  c)
-		{
-			return (i);
-		}
-		i++;
-	}
-	return (0);
-}
-
 
 
 void check_pathe(char ** map ,int j , int i)
@@ -116,25 +117,10 @@ void check_pathe(char ** map ,int j , int i)
 					}
 			}
 		j++;
-	// }
-	//int j,i;
-	j = 0;
-	printf("\n==========\n");
-
-	while(map[j])
-	{
-		i = 0;
-		while (map[j][i])
-		{
-			printf("%c",map[j][i]);
-			i++;
-		}
-		j++;
-	}
-	
 }
 
 int map_req(char ** map)
+
 {
 	struct vars var;
 
@@ -161,3 +147,6 @@ int map_req(char ** map)
 		return (0);
 	return(1);
 }
+
+
+
