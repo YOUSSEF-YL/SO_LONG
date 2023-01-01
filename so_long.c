@@ -6,16 +6,12 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/31 18:28:20 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/01 15:10:21 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 # include "so_long.h"
-
-
-
-
 
 int map_lines(char* map)
 {
@@ -107,7 +103,10 @@ void put_bg(t_vars var)
 	void *xpm = mlx_xpm_file_to_image(var.mlx,"assets/bg.xpm", &var.img_width, &var.img_height);
 	mlx_put_image_to_window(var.mlx,var.mlx_win, xpm,0,0);
 }
-
+// int exiiit()
+// {
+// 	exit(0);
+// }
 
 int	main(void)
 {
@@ -135,11 +134,16 @@ int	main(void)
 	// draw_to_win(var,var.map);
 
 	// mlx_key_hook(var.mlx_win, key_hook, &var);
+	// mlx_hook(var.mlx_win,17, 0, exiiit, &var);
+	
 
-	// mlx_loop(var.mlx);
+	//mlx_loop(var.mlx);
 
 	//check_pathe(var.map);
-	printf("%d",check_liens_l(var.map));
+	// printf("%d|=======\n",is_map_valid(var.map));
+	printf("%d-\n",map_req(var.map));
+	// printf("%d-\n",check_liens_l(var.map));
+	// printf("%d-\n",check_walls(var.map));
 	
 
 }

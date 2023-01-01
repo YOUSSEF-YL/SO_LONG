@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/31 18:08:50 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/01 14:44:10 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ void draw_to_win(t_vars var,char ** map);
 void printmap(char ** map);
 void put_bg(t_vars var);
 int move_to(t_vars *vars, int j,int i,t_intvars intvar,int c);
+int  is_map_valid(char ** map);
 
 #endif

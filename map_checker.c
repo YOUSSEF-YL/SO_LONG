@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2023/01/01 12:45:50 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/01 15:11:12 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,29 +67,24 @@ int check_walls(char **map)
 	
     intvar.j = 0;
 	intvar.i = 0;
-	
-	// while (j <= map_lines("map.ber")-1)
-	// {
 		while (intvar.i < ft_strlen(map[intvar.j])-1) //-1
 		{
 			if (map[0][intvar.i] != '1') //top_l
-				return (1);
+				return (0);
 			if (map[map_lines("map.ber")-1][intvar.i] != '1') // last_l
-				return (1);
+				return (0);
 			 intvar.i++;
 		}
-	//}
 	intvar.e = ft_strlen(map[intvar.j])-2;
 	while (map[intvar.j])
 	{
 			if (map[intvar.j][intvar.e] != '1') //R_l
-				return (1);	
+				return (0);	
 			if (map[intvar.j][0] != '1') //l_l
-				return (1);
+				return (0);
 		intvar.j++;
 	}
-	
- return(0);
+ return(1);
 }
 
 
@@ -122,7 +117,6 @@ void check_pathe(char ** map ,int j , int i)
 }
 
 int map_req(char ** map)
-
 {
 	struct vars var;
 
@@ -135,11 +129,11 @@ int map_req(char ** map)
 		var.i = 0;
 		while (map[var.j][var.i])
 		{
-			if(map[var.j][var.i] == 'p')
+			if (map[var.j][var.i] == 'P')
 				var.p = var.p +1;
-			if(map[var.j][var.i] == 'e')
+			if (map[var.j][var.i] == 'E')
 				var.e = var.e +1;
-			if(map[var.j][var.i] == 'c')
+			if (map[var.j][var.i] == 'C')
 				var.c = var.c +1;
 		 var.i++;
 		}
@@ -148,4 +142,11 @@ int map_req(char ** map)
 	if(var.p < 1 || var.c < 1 || var.e < 1 || var.p > 1 || var.e > 1)
 		return (0);
 	return(1);
+}
+
+int  is_map_valid(char ** map)
+{
+	if((map_req(map) == 1) && (check_liens_l(map) == 1) &&  (check_walls(map) == 1))
+		return (1);
+	return (0);
 }
