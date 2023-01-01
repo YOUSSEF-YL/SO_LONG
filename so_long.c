@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/31 17:27:14 by ybachar          ###   ########.fr       */
+/*   Updated: 2022/12/31 18:28:20 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,12 +131,16 @@ int	main(void)
 
 	int fd = open("map.ber", O_RDONLY); 
 
-	put_bg(var);
-	draw_to_win(var,var.map);
+	// put_bg(var);
+	// draw_to_win(var,var.map);
 
-	mlx_key_hook(var.mlx_win, key_hook, &var);
+	// mlx_key_hook(var.mlx_win, key_hook, &var);
 
-	mlx_loop(var.mlx);
+	// mlx_loop(var.mlx);
+
+	//check_pathe(var.map);
+	printf("%d",check_liens_l(var.map));
+	
 
 }
 

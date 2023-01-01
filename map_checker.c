@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2022/12/31 18:02:03 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/01 12:45:50 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,17 @@ int check_liens_l(char **map)
 {
 	t_intvars intvar;
 
-    intvar.i = 1;
+    int i;
+	intvar.i = 1;
 	intvar.j = map_lines("map.ber")-1;
-    while (intvar.i <= intvar.j)
+	
+    while (intvar.i < intvar.j)
 	{
-		if (ft_strlen(map[0]) != ft_strlen(map[intvar.i]))
-				return (1);
+		if (ft_strlen(map[0])-1 != ft_strlen(map[intvar.i])-1)
+			return (0);	
 		intvar.i++;
 	}
- return(0);
+ 	return(1);
 }
 
 int check_walls(char **map)
@@ -147,6 +149,3 @@ int map_req(char ** map)
 		return (0);
 	return(1);
 }
-
-
-
