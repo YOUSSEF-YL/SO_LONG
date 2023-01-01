@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/01 15:10:21 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/01 20:31:35 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,11 +139,7 @@ int	main(void)
 
 	//mlx_loop(var.mlx);
 
-	//check_pathe(var.map);
-	// printf("%d|=======\n",is_map_valid(var.map));
-	printf("%d-\n",map_req(var.map));
-	// printf("%d-\n",check_liens_l(var.map));
-	// printf("%d-\n",check_walls(var.map));
+	printf("%d",somthing(check_path(var.map,13,1)));
 	
 
 }
