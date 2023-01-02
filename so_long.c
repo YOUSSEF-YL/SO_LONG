@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/02 13:57:22 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/02 20:51:40 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ void draw_to_win(t_vars var,char ** map)
 			else if (map[intvar.j][intvar.i] == 'C')
 				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/collectible.xpm",map_util.x,map_util.y);
 			else if (map[intvar.j][intvar.i] == 'E')
-				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/exit.xpm",map_util.x,map_util.y);
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/door.xpm",map_util.x,map_util.y);
 			else if (map[intvar.j][intvar.i] == 'P')
 				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/player.xpm",map_util.x,map_util.y);
 			intvar.i++;
-			map_util.x = map_util.x + 50;
+			map_util.x = map_util.x + 60;
 		}	
 		map_util.x = 0;
-		map_util.y = map_util.y + 50;
+		map_util.y = map_util.y + 60;
 		intvar.j++;
 	}
 }
