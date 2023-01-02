@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/01 20:31:35 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/02 13:57:22 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void draw_to_win(t_vars var,char ** map)
 		while (map[intvar.j][intvar.i])
 		{
 			if (map[intvar.j][intvar.i] == '1')
-				apptowindow(var.mlx, var.mlx_win, var.img_width,var.img_height,"assets/wall.xpm",map_util.x,map_util.y);
+				apptowindow(var.mlx, var.mlx_win, var.img_width,var.img_height,"assets/d.xpm",map_util.x,map_util.y);
 			// else if (map[intvar.j][intvar.i] == '0')
 			// 	 apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",map_util.x,map_util.y);
 			else if (map[intvar.j][intvar.i] == 'C')
@@ -130,16 +130,16 @@ int	main(void)
 
 	int fd = open("map.ber", O_RDONLY); 
 
-	// put_bg(var);
-	// draw_to_win(var,var.map);
+	put_bg(var);
+	draw_to_win(var,var.map);
 
-	// mlx_key_hook(var.mlx_win, key_hook, &var);
-	// mlx_hook(var.mlx_win,17, 0, exiiit, &var);
+	mlx_key_hook(var.mlx_win, key_hook, &var);
+	//mlx_hook(var.mlx_win,17, 0, exiiit, &var);
 	
 
-	//mlx_loop(var.mlx);
+	mlx_loop(var.mlx);
 
-	printf("%d",somthing(check_path(var.map,13,1)));
+	//printf("%d",somthing(check_path(var.map,13,1)));
 	
 
 }
