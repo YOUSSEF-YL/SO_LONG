@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/03 12:30:17 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/03 12:46:14 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,21 +108,22 @@ void put_bg(t_vars var)
 int ft_exit()
 {
 	exit(0);
-	
-
 }
 
 int	main(void)
 {
 	t_vars var;
+	t_intvars intvar;
 	
 	var.map = (char **)malloc (map_lines("map.ber") * sizeof(char *));
 	var.map = get_map(map_lines("map.ber"));
 	int fd;
-
 	fd = open("map.ber", O_RDONLY); 
+
+	intvar.i = 60 *(ft_strlen(var.map[0]) - 1);
+	intvar.j = 60 *map_lines("map.ber");
 	var.mlx = mlx_init();
-	var.mlx_win = mlx_new_window(var.mlx,60 *ft_strlen(var.map[0]),60 *map_lines("map.ber"), "So_long");
+	var.mlx_win = mlx_new_window(var.mlx,intvar.i,intvar.j, "So_long");
 	//put_bg(var);
 	draw_to_win(var,var.map);
 
