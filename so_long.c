@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/03 11:33:29 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/03 12:30:17 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void draw_to_win(t_vars var,char ** map)
 			else if (map[intvar.j][intvar.i] == '0')
 				 apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/green60.xpm",map_util.x,map_util.y);
 			else if (map[intvar.j][intvar.i] == 'C')
-				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/collectible.xpm",map_util.x,map_util.y);
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/collectiblee.xpm",map_util.x,map_util.y);
 			else if (map[intvar.j][intvar.i] == 'E')
 				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/door.xpm",map_util.x,map_util.y);
 			else if (map[intvar.j][intvar.i] == 'P')
@@ -98,46 +98,36 @@ void draw_to_win(t_vars var,char ** map)
 	}
 }
 
-// int	key_hook(int keycode, t_vars *vars)
-// {
-// 	 printf("%d\n",keycode);
-	
-// 	return (1);
-// }
+
 void put_bg(t_vars var)
 {
 	void *xpm = mlx_xpm_file_to_image(var.mlx,"assets/bg.xpm", &var.img_width, &var.img_height);
 	mlx_put_image_to_window(var.mlx,var.mlx_win, xpm,0,0);
 }
-// int exiiit()
-// {
-// 	exit(0);
-// }
+
+int ft_exit()
+{
+	exit(0);
+	
+
+}
 
 int	main(void)
 {
 	t_vars var;
 	
-	// int		img_width = 1700;
-	// int		img_height = 1700;
-
-    
-	
 	var.map = (char **)malloc (map_lines("map.ber") * sizeof(char *));
-
-
 	var.map = get_map(map_lines("map.ber"));
+	int fd;
 
-	int fd = open("map.ber", O_RDONLY); 
-
+	fd = open("map.ber", O_RDONLY); 
 	var.mlx = mlx_init();
-	//void *img = mlx_new_image(mlx, img_width, img_height);
 	var.mlx_win = mlx_new_window(var.mlx,60 *ft_strlen(var.map[0]),60 *map_lines("map.ber"), "So_long");
 	//put_bg(var);
 	draw_to_win(var,var.map);
 
 	mlx_key_hook(var.mlx_win, key_hook, &var);
-	//mlx_hook(var.mlx_win,17, 0, exiiit, &var);
+	mlx_hook(var.mlx_win,17, 0, ft_exit, &var);
 	
 
 	mlx_loop(var.mlx);
