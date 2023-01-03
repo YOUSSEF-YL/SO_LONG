@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/31 18:19:01 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/03 10:09:33 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int move_to(t_vars *vars, int j,int i,t_intvars intvar,int c)
 		put_bg(*vars);
 	    draw_to_win(*vars,vars->map);
 		c += 1;
+		ft_printf("%s : %d\n","movse",c);
 	return(c);
 }
 
@@ -77,6 +78,5 @@ int	key_hook(int keycode,t_vars *vars)
 		c = move_to(vars,intvar.j,intvar.i+1,intvar,c);
 	if (keycode == 53)
 		exit(0);
-	ft_printf("%s : %d\n","movse",c);
     return (0);
 }
