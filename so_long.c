@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/03 12:46:14 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/03 20:02:09 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,27 @@ void apptowindow(void* mlx, void *mlx_win,int img_width,int img_height,char* img
 	}
 	void *xpm = mlx_xpm_file_to_image(mlx, img_path, &img_width, &img_height);
 	mlx_put_image_to_window(mlx,mlx_win, xpm,x,y);
+	mlx_destroy_image(mlx,xpm);
 }
-
+void test(char **map,t_intvars intvar,t_vars var ,t_map	map_util)
+{
+	map_util.collectible = "assets/collectiblee.xpm";
+	map_util.player = "assets/player.xpm";
+	map_util.exit = "assets/door.xpm";
+	map_util.wall = "";
+	map_util.empty = "assets/green60.xpm";
+	
+	if (map[intvar.j][intvar.i] == '1')
+				apptowindow(var.mlx, var.mlx_win, var.img_width,var.img_height,"assets/d.xpm",map_util.x,map_util.y);
+			else if (map[intvar.j][intvar.i] == '0')
+				 apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,map_util.empty,map_util.x,map_util.y);
+			else if (map[intvar.j][intvar.i] == 'C')
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,map_util.collectible,map_util.x,map_util.y);
+			else if (map[intvar.j][intvar.i] == 'E')
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,map_util.exit,map_util.x,map_util.y);
+			else if (map[intvar.j][intvar.i] == 'P')
+				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,map_util.player,map_util.x,map_util.y);
+}
 
 void draw_to_win(t_vars var,char ** map)
 {
@@ -79,16 +98,7 @@ void draw_to_win(t_vars var,char ** map)
 		intvar.i = 0;
 		while (map[intvar.j][intvar.i])
 		{
-			if (map[intvar.j][intvar.i] == '1')
-				apptowindow(var.mlx, var.mlx_win, var.img_width,var.img_height,"assets/d.xpm",map_util.x,map_util.y);
-			else if (map[intvar.j][intvar.i] == '0')
-				 apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/green60.xpm",map_util.x,map_util.y);
-			else if (map[intvar.j][intvar.i] == 'C')
-				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/collectiblee.xpm",map_util.x,map_util.y);
-			else if (map[intvar.j][intvar.i] == 'E')
-				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/door.xpm",map_util.x,map_util.y);
-			else if (map[intvar.j][intvar.i] == 'P')
-				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/player.xpm",map_util.x,map_util.y);
+			 test(map,intvar,var,map_util);
 			intvar.i++;
 			map_util.x = map_util.x + 60;
 		}	
@@ -137,13 +147,6 @@ int	main(void)
 	
 
 }
-
-
-
- 
-
-
-
 
 //gcc  -o mlx so_long.c  -lmlx -framework OpenGL -framework AppKit
 //gcc so_long.c  -lmlx -framework OpenGL -framework AppKit
