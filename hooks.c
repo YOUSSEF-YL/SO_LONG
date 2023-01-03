@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/03 10:09:33 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/03 10:34:16 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ int move_to(t_vars *vars, int j,int i,t_intvars intvar,int c)
 {
 	 vars->map[j][i] = vars->map[intvar.j][intvar.i];
 		vars->map[intvar.j][intvar.i] = '0';
-		put_bg(*vars);
+		//put_bg(*vars);
 	    draw_to_win(*vars,vars->map);
+	//	mlx_clear_window(vars->mlx,vars->mlx_win);
 		c += 1;
 		ft_printf("%s : %d\n","movse",c);
 	return(c);

@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/02 21:50:12 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/03 11:33:29 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,14 @@ char **get_map(int lines)
 
 void apptowindow(void* mlx, void *mlx_win,int img_width,int img_height,char* img_path,int x, int y)
 {
+	char* path;
+	path = "assets/green60.xpm";
+	if (path != img_path)
+	{
+		void *xpm = mlx_xpm_file_to_image(mlx, path, &img_width, &img_height);
+		mlx_put_image_to_window(mlx,mlx_win, xpm,x,y);
+	}
 	void *xpm = mlx_xpm_file_to_image(mlx, img_path, &img_width, &img_height);
-	
 	mlx_put_image_to_window(mlx,mlx_win, xpm,x,y);
 }
 
@@ -75,8 +81,8 @@ void draw_to_win(t_vars var,char ** map)
 		{
 			if (map[intvar.j][intvar.i] == '1')
 				apptowindow(var.mlx, var.mlx_win, var.img_width,var.img_height,"assets/d.xpm",map_util.x,map_util.y);
-			// else if (map[intvar.j][intvar.i] == '0')
-			// 	 apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/wall.xpm",map_util.x,map_util.y);
+			else if (map[intvar.j][intvar.i] == '0')
+				 apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/green60.xpm",map_util.x,map_util.y);
 			else if (map[intvar.j][intvar.i] == 'C')
 				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/collectible.xpm",map_util.x,map_util.y);
 			else if (map[intvar.j][intvar.i] == 'E')
@@ -84,10 +90,10 @@ void draw_to_win(t_vars var,char ** map)
 			else if (map[intvar.j][intvar.i] == 'P')
 				apptowindow(var.mlx,var.mlx_win,var.img_width,var.img_height,"assets/player.xpm",map_util.x,map_util.y);
 			intvar.i++;
-			map_util.x = map_util.x + 61;
+			map_util.x = map_util.x + 60;
 		}	
 		map_util.x = 0;
-		map_util.y = map_util.y + 61;
+		map_util.y = map_util.y + 60;
 		intvar.j++;
 	}
 }
@@ -127,7 +133,7 @@ int	main(void)
 	var.mlx = mlx_init();
 	//void *img = mlx_new_image(mlx, img_width, img_height);
 	var.mlx_win = mlx_new_window(var.mlx,60 *ft_strlen(var.map[0]),60 *map_lines("map.ber"), "So_long");
-	put_bg(var);
+	//put_bg(var);
 	draw_to_win(var,var.map);
 
 	mlx_key_hook(var.mlx_win, key_hook, &var);
