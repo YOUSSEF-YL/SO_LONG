@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2023/01/05 19:22:58 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/05 21:41:40 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,12 +157,4 @@ int	map_req(char **map)
 	if (var.p < 1 || var.c < 1 || var.e < 1 || var.p > 1 || var.e > 1)
 		return (0);
 	return (1);
-}
-
-int  is_map_valid(char ** map)
-{
-	if ((map_req(map) == 1) && (check_liens_l(map) == 1)
-		&& (check_walls(map) == 1))
-		return (1);
-	return (0);
 }

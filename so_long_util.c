@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:04:43 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/05 20:15:43 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/05 21:42:45 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,12 @@ void	put_bg(t_vars var)
 	xpm = mlx_xpm_file_to_image(var.mlx, bg, &var.img_width, &var.img_height);
 	mlx_put_image_to_window(var.mlx, var.mlx_win, xpm, 0, 0);
 }
+
+int	is_map_valid(char **map)
+{
+	if ((map_req(map) == 1) && (check_liens_l(map) == 1)
+		&& (check_walls(map) == 1))
+		return (1);
+	return (0);
+}
+                       

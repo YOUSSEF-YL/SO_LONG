@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/05 20:34:03 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/05 21:24:49 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,22 @@ typedef struct t_map{
 	char	*empty;
 	char	*wall;
 	char	*collectible;
-} t_map;
+}	t_map;
 
-char ** get_map(int fd);
-int check_liens_l(char **map);
-int map_lines(char* map);
-int check_walls(char **map);
-char** check_path(char ** map ,int j , int i);
-int map_req(char ** map);
-t_intvars  get_plyer_pos (char ** map);
-int	key_hook(int keycode, t_vars *vars);
-void draw_to_win(t_vars var,char ** map);
-void printmap(char ** map);
-void put_bg(t_vars var);
-int move_to(t_vars *vars, int j,int i,t_intvars intvar,int c);
-int  is_map_valid(char ** map);
-int somthing(char ** map);
-int	ft_exit(void);
+int				move_to(t_vars *vars, int j, int i, t_intvars intvar, int c);
+int				is_map_valid(char **map);
+int				somthing(char **map);
+int				ft_exit(void);
+int				check_liens_l(char **map);
+int				map_lines(char *map);
+int				check_walls(char **map);
+int				map_req(char **map);
+int				key_hook(int keycode, t_vars *vars);
+char			**get_map(int fd);
+char			**check_path(char **map, int j, int i);
+void			draw_to_win(t_vars var, char **map);
+void			printmap(char **map);
+void			put_bg(t_vars var);
+t_intvars		get_plyer_pos(char **map);
 
 #endif

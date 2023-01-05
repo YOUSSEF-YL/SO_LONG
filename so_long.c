@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/05 20:27:23 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/05 21:51:46 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,30 +77,24 @@ void	draw_to_win(t_vars var, char **map)
 	}
 }
 
-
-
-int	main(void)
+int	main(int ac, char **av)
 {
-	t_vars var;
-	t_intvars intvar;
-	
+	t_vars		var;
+	t_intvars	intvar;
+	int			fd;
+
 	var.map = (char **)malloc (map_lines("map.ber") * sizeof(char *));
 	var.map = get_map(map_lines("map.ber"));
-	int fd;
-	fd = open("map.ber", O_RDONLY); 
-
-	intvar.i = 60 *(ft_strlen(var.map[0]) - 1);
-	intvar.j = 60 *map_lines("map.ber");
+	fd = open("map.ber", O_RDONLY);
+	intvar.i = 60 * (ft_strlen(var.map[0]) - 1);
+	intvar.j = 60 * map_lines("map.ber");
 	var.mlx = mlx_init();
-	var.mlx_win = mlx_new_window(var.mlx,intvar.i,intvar.j, "So_long");
+	var.mlx_win = mlx_new_window(var.mlx, intvar.i, intvar.j, "So_long");
 	//put_bg(var);
 	draw_to_win(var, var.map);
 	mlx_key_hook(var.mlx_win, key_hook, &var);
-	mlx_hook(var.mlx_win,17, 0, ft_exit, &var);
-	
-
+	mlx_hook(var.mlx_win, 17, 0, ft_exit, &var);
 	mlx_loop(var.mlx);
-
 	//printf("%d",somthing(check_path(var.map,13,1)));
 }
 
