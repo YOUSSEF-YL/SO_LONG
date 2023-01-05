@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/01 20:29:01 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/05 20:34:03 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,31 @@
 # include "get_next_line.h"
 # include "ft_printf/ft_printf.h"
 
-
-typedef struct	s_vars {
+typedef struct s_vars{
 	void	*mlx;
 	void	*win;
 	void	*mlx_win;
-  void   *relative_path;
+	void	*relative_path;
 	int		img_width ;
 	int		img_height ;
-  char** map;
+	char	**map;
 }				t_vars;
 typedef struct vars{
-  int i;
-  int j;
-  int p;
-	int e;
-	int c;
-} t_intvars;
+	int	i;
+	int	j;
+	int	p;
+	int	e;
+	int	c;
+}	t_intvars;
 
 typedef struct t_map{
-  int x;
-  int y;
-  char* exit;
-  char* player;
-  char* empty;
-  char* wall;
-  char* collectible;
+	int		x;
+	int		y;
+	char	*exit;
+	char	*player;
+	char	*empty;
+	char	*wall;
+	char	*collectible;
 } t_map;
 
 char ** get_map(int fd);
@@ -64,5 +63,6 @@ void put_bg(t_vars var);
 int move_to(t_vars *vars, int j,int i,t_intvars intvar,int c);
 int  is_map_valid(char ** map);
 int somthing(char ** map);
+int	ft_exit(void);
 
 #endif
