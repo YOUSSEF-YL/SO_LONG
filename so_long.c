@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/03 20:02:09 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/03 21:32:56 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int map_lines(char* map)
 		str = get_next_line(fd);
 	}
 	close(fd);
+	free(str);
 	return(i );
 }
 
