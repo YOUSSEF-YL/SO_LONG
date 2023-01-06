@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2023/01/05 21:41:40 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/06 11:57:27 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,25 @@
 // 	return (0);
 // }
 
-int	somthing(char **map)
-{
-	t_intvars	var;
+// int	somthing(char **map)
+// {
+// 	t_intvars	var;
 
-	var.i = 0;
-	var.j = 0 ;
-	while (map[var.j])
-	{
-		var.i = 0;
-		while (map[var.j][var.i])
-		{
-			if (map[var.j][var.i] == 'C' || map[var.j][var.i] == 'E')
-				return (0);
-			var.i++;
-		}
-		var.j++;
-	}
-	return (1);
-}
+// 	var.i = 0;
+// 	var.j = 0 ;
+// 	while (map[var.j])
+// 	{
+// 		var.i = 0;
+// 		while (map[var.j][var.i])
+// 		{
+// 			if (map[var.j][var.i] == 'C' || map[var.j][var.i] == 'E')
+// 				return (0);
+// 			var.i++;
+// 		}
+// 		var.j++;
+// 	}
+// 	return (1);
+// }
 
 int	check_liens_l(char **map)
 {
@@ -157,4 +157,23 @@ int	map_req(char **map)
 	if (var.p < 1 || var.c < 1 || var.e < 1 || var.p > 1 || var.e > 1)
 		return (0);
 	return (1);
+}
+
+void check_map_compos(char ** map)
+{
+	int j;
+	int i;
+	i =0;
+	j =0;
+	while(map[j])
+	{
+		i = 0;
+		while (map[j][i])
+		{
+			if (map[j][i] != '0' || map[j][i] != 'E' || map[j][i] != 'C' || map[j][i] != 'P' )
+				ft_printf("hg");
+			i++;
+		}
+		j++;
+	}
 }
