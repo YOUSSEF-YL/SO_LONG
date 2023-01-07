@@ -6,15 +6,15 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/05 14:46:07 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/07 21:23:29 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_intvars	get_plyer_pos(char	**map)
+t_intvars get_plyer_pos(char **map)
 {
-	t_intvars	var;
+	t_intvars var;
 
 	var.i = 0;
 	var.j = 0;
@@ -24,11 +24,11 @@ t_intvars	get_plyer_pos(char	**map)
 		while (map[var.j][var.i])
 		{
 			if (map[var.j][var.i] == 'P')
-				break ;
+				break;
 			var.i++;
 		}
 		if (map[var.j][var.i] == 'P')
-			break ;
+			break;
 		var.j++;
 	}
 	return (var);
@@ -52,9 +52,9 @@ t_intvars	get_plyer_pos(char	**map)
 // 	}
 // }
 
-int	get_c(char	**map)
+int get_c(char **map)
 {
-	t_intvars	intvar;
+	t_intvars intvar;
 
 	intvar.i = 0;
 	intvar.j = 0;
@@ -73,47 +73,56 @@ int	get_c(char	**map)
 	return (intvar.c);
 }
 
-int	move_to(t_vars *vars, int j, int i, t_intvars intvar, int c)
+int move_to(t_vars *vars, int j, int i, t_intvars intvar, int c)
 {
-	if (vars->map[j][i] == 'E' )
+	int w;
+	printf("%d\n", get_c(vars->map));
+	if (get_c(vars->map) == 0)
 	{
-		if (get_c(vars->map) == 0)
+		if (vars->map[j][i] == 'E')
 		{
 			vars->map[j][i] = vars->map[intvar.j][intvar.i];
+			// apptowindow();
 			exit(0);
 		}
 	}
-	if (vars->map[j][i] != 'E' )
+	if (vars->map[j][i] != 'E')
 	{
+
 		vars->map[j][i] = vars->map[intvar.j][intvar.i];
 		vars->map[intvar.j][intvar.i] = '0';
-		mlx_clear_window (vars->mlx, vars->mlx_win);
-	}
-	draw_to_win(*vars, vars->map);
+		void *bg = mlx_xpm_file_to_image(vars->mlx, "assets/green60.xpm", &w, &w);
+		mlx_put_image_to_window(vars->mlx, vars->mlx_win, bg, intvar.i * 60, intvar.j * 60);
+		void *p = mlx_xpm_file_to_image(vars->mlx, "assets/player.xpm", &w, &w);
+		mlx_put_image_to_window(vars->mlx, vars->mlx_win, p, i * 60, j * 60);
 		c += 1;
-	ft_printf("%s : %d\n", "movse", c);
+		ft_printf("%s : %d\n", "movse", c);
+		//  mlx_clear_window(vars->mlx, vars->mlx_win);
+	}
+	// draw_to_win(*vars, vars->map);
+
 	return (c);
 }
 
-int	key_hook(int keycode, t_vars *vars)
+int key_hook(int keycode, t_vars *vars)
 {
-	t_intvars	intvar;
-	static int	c = 0;
+	t_intvars intvar;
+	static int c = 0;
 
-	intvar = get_plyer_pos (vars->map);
+	intvar = get_plyer_pos(vars->map);
 	if ((keycode == 126 || keycode == 13) && vars->map
-		[intvar.j - 1][intvar.i] != '1')
-		c = move_to (vars, intvar.j - 1, intvar.i, intvar, c);
-	if ((keycode == 123 || keycode == 0) && vars->map
-		[intvar.j][intvar.i - 1] != '1')
+													 [intvar.j - 1][intvar.i] != '1')
+		c = move_to(vars, intvar.j - 1, intvar.i, intvar, c);
+	else if ((keycode == 123 || keycode == 0) && vars->map
+														 [intvar.j][intvar.i - 1] != '1')
 		c = move_to(vars, intvar.j, intvar.i - 1, intvar, c);
-	if ((keycode == 125 || keycode == 1) && vars->map
-		[intvar.j + 1][intvar.i] != '1')
+	else if ((keycode == 125 || keycode == 1) && vars->map
+														 [intvar.j + 1][intvar.i] != '1')
 		c = move_to(vars, intvar.j + 1, intvar.i, intvar, c);
-	if ((keycode == 124 || keycode == 2) && vars->map
-		[intvar.j][intvar.i +1] != '1')
+	else if ((keycode == 124 || keycode == 2) && vars->map
+														 [intvar.j][intvar.i + 1] != '1')
 		c = move_to(vars, intvar.j, intvar.i + 1, intvar, c);
-	if (keycode == 53)
+	else if (keycode == 53)
 		exit(0);
 	return (0);
 }
