@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2023/01/07 11:40:09 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/09 21:48:39 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,25 @@
 // 	return (0);
 // }
 
-// int	somthing(char **map)
-// {
-// 	t_intvars	var;
+int	is_path_valid(char **map)
+{
+	t_intvars	var;
 
-// 	var.i = 0;
-// 	var.j = 0 ;
-// 	while (map[var.j])
-// 	{
-// 		var.i = 0;
-// 		while (map[var.j][var.i])
-// 		{
-// 			if (map[var.j][var.i] == 'C' || map[var.j][var.i] == 'E')
-// 				return (0);
-// 			var.i++;
-// 		}
-// 		var.j++;
-// 	}
-// 	return (1);
-// }
+	var.i = 0;
+	var.j = 0 ;
+	while (map[var.j])
+	{
+		var.i = 0;
+		while (map[var.j][var.i])
+		{
+			if (map[var.j][var.i] == 'C' || map[var.j][var.i] == 'E')
+				return (0);
+			var.i++;
+		}
+		var.j++;
+	}
+	return (1);
+}
 
 int	check_liens_l(char **map)
 {
@@ -104,27 +104,29 @@ int	check_walls(char **map)
 
 char	**check_path(char **map, int j, int i)
 {
+	char ** map_res;
+	map_res = map;
 	if (map[j][i] == 'P')
 	{
-		if (map[j +1][i] == '0' || map[j +1][i] == 'C' || map[j +1][i] == 'E')
+		if (map_res[j +1][i] == '0' || map_res[j +1][i] == 'C' || map_res[j +1][i] == 'E')
 		{
-			map[j + 1][i] = 'P';
-			check_path(map, j + 1, i);
+			map_res[j + 1][i] = 'P';
+			check_path(map_res, j + 1, i);
 		}
-		if (map[j -1][i] == '0' || map[j -1][i] == 'C' || map[j -1][i] == 'E')
+		if (map_res[j -1][i] == '0' || map_res[j -1][i] == 'C' || map_res[j -1][i] == 'E')
 		{
-			map[j -1][i] = 'P';
-			check_path(map, j - 1, i);
+			map_res[j -1][i] = 'P';
+			check_path(map_res, j - 1, i);
 		}
-		if (map[j][i +1] == '0' || map[j][i +1] == 'C' || map[j][i +1] == 'E')
+		if (map_res[j][i +1] == '0' || map_res[j][i +1] == 'C' || map_res[j][i +1] == 'E')
 		{
-			map[j][i +1] = 'P';
-			check_path(map, j, i + 1);
+			map_res[j][i +1] = 'P';
+			check_path(map_res, j, i + 1);
 		}
-		if (map[j][i -1] == '0' || map[j][i -1] == 'C' || map[j][i -1] == 'E')
+		if (map_res[j][i -1] == '0' || map_res[j][i -1] == 'C' || map_res[j][i -1] == 'E')
 		{
-			map[j][i -1] = 'P';
-			check_path(map, j, i - 1);
+			map_res[j][i -1] = 'P';
+			check_path(map_res, j, i - 1);
 		}
 	}
 	j++;

@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/07 21:23:29 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/09 20:10:59 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ int key_hook(int keycode, t_vars *vars)
 {
 	t_intvars intvar;
 	static int c = 0;
-
 	intvar = get_plyer_pos(vars->map);
 	if ((keycode == 126 || keycode == 13) && vars->map
 													 [intvar.j - 1][intvar.i] != '1')

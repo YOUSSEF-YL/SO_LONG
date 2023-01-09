@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:04:43 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/09 12:07:53 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/09 21:18:44 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,18 @@ int map_name(char *name )
 
 int	is_map_valid(char **map)
 {
+
+	if (check_walls(map) == 0)
+		 ft_printf("The map must be surrounded by walls \n");
 	if (map_req(map) == 0)
 		ft_printf("The map has to be constructed with all  components \n");
 	if (check_liens_l(map) == 0)
 		ft_printf("The map must be rectangular \n");
 	if (check_map_compos(map) == 0)
-		ft_printf("The map must be rectangular \n");
-	if (check_walls(map) == 0)
-		ft_printf("The map must be rectangular \n");
+		ft_printf("The map has to be constructed with required components only \n");
 	
+	// if (map_name(map) == 0)
+	// 	ft_printf("The map name is invalid  \n");
 	if ((map_req(map) == 1) && (check_liens_l(map) == 1)
 		&& (check_walls(map) == 1) && (check_map_compos(map) == 1))
 		return (1);
