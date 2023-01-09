@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:04:43 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/06 19:55:38 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/09 12:07:53 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,30 @@ void	put_bg(t_vars var)
 	mlx_put_image_to_window(var.mlx, var.mlx_win, xpm, 0, 0);
 }
 
+int map_name(char *name )
+{
+	int i;
+
+	i = ft_strlen(name) - 1;
+	
+	if(name[i] != 'r' || name[i -1] != 'e' )
+		return (0);
+	if(name[i -2] != 'b' || name[i - 3] != '.' )
+		return (0);
+	return (1);
+}
+
 int	is_map_valid(char **map)
 {
+	if (map_req(map) == 0)
+		ft_printf("The map has to be constructed with all  components \n");
+	if (check_liens_l(map) == 0)
+		ft_printf("The map must be rectangular \n");
+	if (check_map_compos(map) == 0)
+		ft_printf("The map must be rectangular \n");
+	if (check_walls(map) == 0)
+		ft_printf("The map must be rectangular \n");
+	
 	if ((map_req(map) == 1) && (check_liens_l(map) == 1)
 		&& (check_walls(map) == 1) && (check_map_compos(map) == 1))
 		return (1);
