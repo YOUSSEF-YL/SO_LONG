@@ -1,6 +1,6 @@
-SRCS = 
+SRCS = get_next_line.c get_next_line_utils.c hooks.c map_checker.c so_long_util.c so_long.c
 OBJS	= ${SRCS:.c=.o}
-NAME	= 
+NAME	= libso_long.a
 CC		= gcc
 CFLAGS 	= -Wall -Wextra -Werror
 RM		= rm -f

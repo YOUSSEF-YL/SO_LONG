@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/09 21:51:06 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/10 19:28:01 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,28 +83,31 @@ int main(int ac, char **av)
 	t_intvars intvar;
 	int fd;
 	
-	var.map = (char **)malloc(map_lines("map.ber") * sizeof(char *));
-	var.map = get_map(map_lines("map.ber"));
-	// if (is_map_valid(var.map))
-	// {
-	// 	printf("valid");
-	// }
-	// else
-    //     exit (0);
-
+	var.map = (char **)malloc(map_lines(av[1]) * sizeof(char *));
+	var.map = get_map(map_lines(av[1]),av[1]);
+	//printf("%d",is_map_valid(var.map));
 	
-	// fd = open("map.ber", O_RDONLY);
-	// intvar.i = 60 * (ft_strlen(var.map[0]) - 1);
-	// intvar.j = 60 * map_lines("map.ber");
-	// var.mlx = mlx_init();
-	// var.mlx_win = mlx_new_window(var.mlx, intvar.i, intvar.j, "So_long");
-	// // put_bg(var);
-	// draw_to_win(var, var.map);
-	// mlx_key_hook(var.mlx_win, key_hook, &var);
-	// mlx_hook(var.mlx_win, 17, 0, ft_exit, &var);
-	// mlx_loop(var.mlx);
-	// printf("%d",check_map_compos(var.map));
-	printf("%d",is_path_valid(check_path(var.map,13,1)));
+	if (is_map_valid(var.map,av[1]))
+	{
+		if (map_name(av[1]) == 0)
+			ft_printf("The map name is invalid  \n");
+		else
+			{
+				free(var.map);
+				var.map = get_map(map_lines(av[1]),av[1]);
+				intvar.i = 60 * (ft_strlen(var.map[0]) - 1);
+				intvar.j = 60 * map_lines(av[1]);
+				var.mlx = mlx_init();
+				var.mlx_win = mlx_new_window(var.mlx, intvar.i, intvar.j, "So_long");
+				// put_bg(var);
+				draw_to_win(var, var.map);
+				mlx_key_hook(var.mlx_win, key_hook, &var);
+				mlx_hook(var.mlx_win, 17, 0, ft_exit, &var);
+				mlx_loop(var.mlx);
+			}
+	}
+	else
+        exit (233);
 }
 
 // gcc  -o mlx so_long.c  -lmlx -framework OpenGL -framework AppKit

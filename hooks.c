@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/09 20:10:59 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/10 19:34:02 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int get_c(char **map)
 int move_to(t_vars *vars, int j, int i, t_intvars intvar, int c)
 {
 	int w;
-	printf("%d\n", get_c(vars->map));
 	if (get_c(vars->map) == 0)
 	{
 		if (vars->map[j][i] == 'E')
@@ -88,7 +87,6 @@ int move_to(t_vars *vars, int j, int i, t_intvars intvar, int c)
 	}
 	if (vars->map[j][i] != 'E')
 	{
-
 		vars->map[j][i] = vars->map[intvar.j][intvar.i];
 		vars->map[intvar.j][intvar.i] = '0';
 		void *bg = mlx_xpm_file_to_image(vars->mlx, "assets/green60.xpm", &w, &w);

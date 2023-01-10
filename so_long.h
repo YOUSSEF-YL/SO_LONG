@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/09 21:49:01 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/10 19:27:21 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,21 @@ typedef struct t_map
 } t_map;
 
 int move_to(t_vars *vars, int j, int i, t_intvars intvar, int c);
-int is_map_valid(char **map);
-int somthing(char **map);
+int is_map_valid(char **map,char *map_path);
 int ft_exit(void);
-int check_liens_l(char **map);
+int check_liens_l(char **map,char *map_path);
 int map_lines(char *map);
-int check_walls(char **map);
+int check_walls(char **map,char *map_path);
 int map_req(char **map);
 int key_hook(int keycode, t_vars *vars);
 int check_map_compos(char **map);
-char **get_map(int fd);
+char **get_map(int fd,char *map_path);
 char **check_path(char **map, int j, int i);
 void draw_to_win(t_vars var, char **map);
-void printmap(char **map);
 void put_bg(t_vars var);
 t_intvars get_plyer_pos(char **map);
 int	is_path_valid(char **map);
+int map_name(char *name );
 
 
 #endif

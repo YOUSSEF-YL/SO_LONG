@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:04:43 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/09 21:18:44 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/10 19:29:13 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,22 @@ int	map_lines(char	*map)
 	return (i);
 }
 
-char	**get_map(int lines)
+char	**get_map(int lines,char *map_path)
 {
 	char	**map;
 	int		i;
 	int		fd;
 
 	i = 0;
-	map = (char **)malloc(map_lines("map.ber") * sizeof(char *));
-	fd = open("map.ber", O_RDONLY);
+	map = (char **)malloc(map_lines(map_path) * sizeof(char *));
+	fd = open(map_path, O_RDONLY);
 	while (i <= lines - 1)
 	{
 		map[i] = get_next_line(fd);
 		i++;
 	}
 	close(fd);
-	map[map_lines("map.ber")] = 0;
+	map[map_lines(map_path)] = 0;
 	return (map);
 }
 
@@ -78,22 +78,26 @@ int map_name(char *name )
 	return (1);
 }
 
-int	is_map_valid(char **map)
+int	is_map_valid(char **map,char *map_path)
 {
+	t_intvars intvar ;
 
-	if (check_walls(map) == 0)
-		 ft_printf("The map must be surrounded by walls \n");
+	intvar = get_plyer_pos(map);
+	if (check_walls(map,map_path) == 0)
+		 ft_printf("Error:\n The map must be surrounded by walls \n");
 	if (map_req(map) == 0)
-		ft_printf("The map has to be constructed with all  components \n");
-	if (check_liens_l(map) == 0)
-		ft_printf("The map must be rectangular \n");
+		ft_printf("Error:\n The map has to be constructed with required components\n");
+	if (check_liens_l(map,map_path) == 0)
+		ft_printf("Error:\n The map must be rectangular \n");
 	if (check_map_compos(map) == 0)
-		ft_printf("The map has to be constructed with required components only \n");
-	
-	// if (map_name(map) == 0)
-	// 	ft_printf("The map name is invalid  \n");
-	if ((map_req(map) == 1) && (check_liens_l(map) == 1)
-		&& (check_walls(map) == 1) && (check_map_compos(map) == 1))
-		return (1);
+		ft_printf("Error:\n The map has to be constructed with required components only \n");
+	if ((map_req(map) == 1) && (check_liens_l(map,map_path) == 1)
+		&& (check_walls(map,map_path) == 1) && (check_map_compos(map) == 1))
+		{
+			if(is_path_valid(check_path(map,intvar.j,intvar.i))== 0)
+				printf("Error:\n There is no valid path in the map.\n");
+			else
+				return (1);
+		}
 	return (0);
 }

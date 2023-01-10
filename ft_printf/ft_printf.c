@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:54:28 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/10 13:17:49 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/10 13:25:45 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	ft_putchar(int c)
 
 int	switshcase(int count, va_list args, const char *mode, int i)
 {
-	
-		count += ft_putchar(mode[i]);
+	count += ft_putchar(mode[i]);
 	return (count);
 }
 
