@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/10 19:28:01 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/11 15:38:48 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ int main(int ac, char **av)
 			}
 	}
 	else
-        exit (233);
+        exit (0);
+	
 }
 
 // gcc  -o mlx so_long.c  -lmlx -framework OpenGL -framework AppKit

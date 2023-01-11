@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2023/01/10 19:11:07 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/11 15:34:46 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,11 +172,13 @@ int	check_map_compos(char **map)
 		i = 0;
 		while (map[j][i])
 		{
-			if (map[j][i] == '\n')
-				i++;
+			// if ( || map[j][i] == '\0')
+			// 	i++;
 			if (map[j][i] && map[j][i] != '1' && map[j][i] != 'E' && map[j][i]
-				!= 'P' && map[j][i] != 'C' && map[j][i] != '0')
-				return (0);
+				!= 'P' && map[j][i] != 'C' && map[j][i] != '0' && map[j][i] != '\n')
+				{
+					printf("%d",map[j][i]);
+					return (0);}
 			i++;
 		}
 		j++;

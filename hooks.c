@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/10 19:34:02 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/11 13:35:23 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,6 @@ t_intvars get_plyer_pos(char **map)
 	return (var);
 }
 
-// void printmap(char ** map)
-// {
-// 	int j;
-// 	int i;
-// 	i =0;
-// 	j =0;
-// 	while(map[j])
-// 	{
-// 		i = 0;
-// 		while (map[j][i])
-// 		{
-// 			printf("%c",map[j][i]);
-// 			i++;
-// 		}
-// 		j++;
-// 	}
-// }
-
 int get_c(char **map)
 {
 	t_intvars intvar;
@@ -76,12 +58,14 @@ int get_c(char **map)
 int move_to(t_vars *vars, int j, int i, t_intvars intvar, int c)
 {
 	int w;
+	static int cc;
+	
 	if (get_c(vars->map) == 0)
 	{
 		if (vars->map[j][i] == 'E')
 		{
 			vars->map[j][i] = vars->map[intvar.j][intvar.i];
-			// apptowindow();
+		ft_printf("%s : %d\n", "movse", ++cc);
 			exit(0);
 		}
 	}
@@ -93,12 +77,9 @@ int move_to(t_vars *vars, int j, int i, t_intvars intvar, int c)
 		mlx_put_image_to_window(vars->mlx, vars->mlx_win, bg, intvar.i * 60, intvar.j * 60);
 		void *p = mlx_xpm_file_to_image(vars->mlx, "assets/player.xpm", &w, &w);
 		mlx_put_image_to_window(vars->mlx, vars->mlx_win, p, i * 60, j * 60);
-		c += 1;
-		ft_printf("%s : %d\n", "movse", c);
-		//  mlx_clear_window(vars->mlx, vars->mlx_win);
+		// cc += 1;
+		ft_printf("%s : %d\n", "movse", ++cc);
 	}
-	// draw_to_win(*vars, vars->map);
-
 	return (c);
 }
 

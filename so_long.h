@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/10 19:27:21 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/11 13:34:12 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,14 @@ typedef struct vars
 	int p;
 	int e;
 	int c;
+
 } t_intvars;
+
+typedef struct f_norm
+{
+	t_vars *vars;
+	t_intvars intvar;
+} t_norm;
 
 typedef struct t_map
 {
