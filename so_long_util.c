@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:04:43 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/10 21:42:04 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/11 18:41:02 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	map_lines(char	*map)
 	return (i);
 }
 
-char	**get_map(int lines,char *map_path)
+char	**get_map(int lines, char *map_path)
 {
 	char	**map;
 	int		i;
@@ -55,49 +55,50 @@ int	ft_exit(void)
 	exit(0);
 }
 
-void	put_bg(t_vars var)
-{
-	void	*xpm;
-	char	*bg;
+// void	put_bg(t_vars var)
+// {
+// 	void	*xpm;
+// 	char	*bg;
 
-	bg = "assets/bg.xpm";
-	xpm = mlx_xpm_file_to_image(var.mlx, bg, &var.img_width, &var.img_height);
-	mlx_put_image_to_window(var.mlx, var.mlx_win, xpm, 0, 0);
-}
+// 	bg = "assets/bg.xpm";
+// 	xpm = mlx_xpm_file_to_image(var.mlx, bg, &var.img_width, &var.img_height);
+// 	mlx_put_image_to_window(var.mlx, var.mlx_win, xpm, 0, 0);
+// }
 
-int map_name(char *name )
+int	map_name(char *name )
 {
-	int i;
+	int	i;
 
 	i = ft_strlen(name) - 1;
-	
-	if(name[i] != 'r' || name[i -1] != 'e' )
+	if (name[i] != 'r' || name[i -1] != 'e' )
 		return (0);
-	if(name[i -2] != 'b' || name[i - 3] != '.' )
+	if (name[i -2] != 'b' || name[i - 3] != '.' )
 		return (0);
 	return (1);
 }
 
-int	is_map_valid(char **map,char *map_path)
+int	is_map_valid(char **map, char *map_path)
 {
-	t_intvars intvar ;
+	t_intvars	intvar ;
 
 	intvar = get_plyer_pos(map);
-	if (check_walls(map,map_path) == 0)
-		 ft_printf("Error:\n The map must be surrounded by walls \n");
+	if (check_walls(map, map_path) == 0)
+		ft_printf("Error:\n The map must be surrounded by walls \n");
 	if (map_req(map) == 0)
-		ft_printf("Error:\n The map has to be constructed with required components\n");
-	if (check_liens_l(map,map_path) == 0)
+		ft_printf("Error:\n The map has to be"
+			"constructed with required components\n");
+	if (check_liens_l(map, map_path) == 0)
 		ft_printf("Error:\n The map must be rectangular \n");
 	if (check_map_compos(map) == 0)
-		ft_printf("Error:\n The map has to be constructed with required components only \n");
-	if ((map_req(map) == 1) && (check_liens_l(map,map_path) == 1)
-		&& (check_walls(map,map_path) == 1) && (check_map_compos(map) == 1))
-		{
-			if(is_path_valid(check_path(map,intvar.j,intvar.i))== 0)
-				printf("Error:\n There is no valid path in the map.\n");
-			else
-				return (1);
-		}
+		ft_printf("Error:\nThe map has to be constructed"
+			"with required components only \n");
+	if ((map_req(map) == 1) && (check_liens_l(map, map_path) == 1)
+		&& (check_walls(map, map_path) == 1) && (check_map_compos(map) == 1))
+	{
+		if (is_path_valid(check_path(map, intvar.j, intvar.i)) == 0)
+			printf("Error:\n There is no valid path in the map.\n");
+		else
+			return (1);
+	}
 	return (0);
 }

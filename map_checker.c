@@ -6,39 +6,11 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2023/01/11 15:34:46 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/11 19:32:38 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// int c_cherch(char *str ,char c)
-// {
-// 	int i ;
-// 	i = 0;
-// 	while (str[i] != '\0')
-// 	{
-// 		if (str[i]== c)
-// 			return (1);
-// 		i++;
-// 	}
-// 	return(0);
-// }
-
-// int get_c_i(char* line,int c)
-// {
-// 	int  i;
-// 	i = 0;
-// 	while (line[i] != '\0')
-// 	{
-// 		if (line[i] ==  c)
-// 		{
-// 			return (i);
-// 		}
-// 		i++;
-// 	}
-// 	return (0);
-// }
 
 int	is_path_valid(char **map)
 {
@@ -51,7 +23,7 @@ int	is_path_valid(char **map)
 		var.i = 0;
 		while (map[var.j][var.i])
 		{
-			if (map[var.j][var.i] == 'C' || map[var.j][var.i] == 'E')
+			if (map[var.j][var.i] == 'C')
 				return (0);
 			var.i++;
 		}
@@ -60,10 +32,9 @@ int	is_path_valid(char **map)
 	return (1);
 }
 
-int	check_liens_l(char **map,char *map_path)
+int	check_liens_l(char **map, char *map_path)
 {
 	t_intvars	intvar;
-	int			i;
 
 	intvar.i = 1;
 	intvar.j = map_lines(map_path) - 1;
@@ -76,7 +47,7 @@ int	check_liens_l(char **map,char *map_path)
 	return (1);
 }
 
-int	check_walls(char **map,char *map_path)
+int	check_walls(char **map, char *map_path)
 {
 	t_intvars	intvar;
 
@@ -104,25 +75,24 @@ int	check_walls(char **map,char *map_path)
 
 char	**check_path(char **map, int j, int i)
 {
-	
 	if (map[j][i] == 'P')
 	{
-		if (map[j +1][i] == '0' || map[j +1][i] == 'C' || map[j +1][i] == 'E')
+		if (map[j +1][i] == '0' || map[j +1][i] == 'C' )
 		{
 			map[j + 1][i] = 'P';
 			check_path(map, j + 1, i);
 		}
-		if (map[j -1][i] == '0' || map[j -1][i] == 'C' || map[j -1][i] == 'E')
+		if (map[j -1][i] == '0' || map[j -1][i] == 'C' )
 		{
 			map[j -1][i] = 'P';
 			check_path(map, j - 1, i);
 		}
-		if (map[j][i +1] == '0' || map[j][i +1] == 'C' || map[j][i +1] == 'E')
+		if (map[j][i +1] == '0' || map[j][i +1] == 'C' )
 		{
 			map[j][i +1] = 'P';
 			check_path(map, j, i + 1);
 		}
-		if (map[j][i -1] == '0' || map[j][i -1] == 'C' || map[j][i -1] == 'E')
+		if (map[j][i -1] == '0' || map[j][i -1] == 'C' )
 		{
 			map[j][i -1] = 'P';
 			check_path(map, j, i - 1);
@@ -157,31 +127,5 @@ int	map_req(char **map)
 	}
 	if (var.p < 1 || var.c < 1 || var.e < 1 || var.p > 1 || var.e > 1)
 		return (0);
-	return (1);
-}
-
-int	check_map_compos(char **map)
-{
-	int	j;
-	int	i;
-
-	i = 0;
-	j = 0;
-	while (map[j])
-	{
-		i = 0;
-		while (map[j][i])
-		{
-			// if ( || map[j][i] == '\0')
-			// 	i++;
-			if (map[j][i] && map[j][i] != '1' && map[j][i] != 'E' && map[j][i]
-				!= 'P' && map[j][i] != 'C' && map[j][i] != '0' && map[j][i] != '\n')
-				{
-					printf("%d",map[j][i]);
-					return (0);}
-			i++;
-		}
-		j++;
-	}
 	return (1);
 }

@@ -1,25 +1,39 @@
-SRCS = get_next_line.c get_next_line_utils.c hooks.c map_checker.c so_long_util.c so_long.c
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/01/11 19:42:52 by ybachar           #+#    #+#              #
+#    Updated: 2023/01/11 19:58:24 by ybachar          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRCS 	= get_next_line.c get_next_line_utils.c hooks.c map_checker.c so_long_util.c so_long.c
+
 OBJS	= ${SRCS:.c=.o}
-NAME	= libso_long.a
+
+NAME	= so_long
+
 CC		= gcc
-CFLAGS 	= -Wall -Wextra -Werror
+
+CFLAGS 	= -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
+
 RM		= rm -f
 
-%.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+$(NAME) : ${SRCS}
+	make -C ft_printf
+	${CC} ${CFLAGS} ${SRCS} ./ft_printf/libftprintf.a -o so_long
 
 all: ${NAME}
 
-${NAME}: ${OBJS}
-	ar rcs ${NAME} ${OBJS}
-
-
-
 clean:
-	${RM} ${OBJS}
+	make clean -C ft_printf
+	${RM} so_long
 
-fclean:
-	${RM} ${NAME} ${OBJS}
+fclean: clean
+	make fclean -C ft_printf
 
 
 re:	fclean all

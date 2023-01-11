@@ -6,29 +6,31 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/11 15:38:48 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/11 20:12:28 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void apptowindow(void *mlx, void *mlx_win, int img_width, int img_height, char *img_path, int x, int y)
+// void *mlx, void *mlx_win, int img_width, int img_height
+void	apptowindow(t_vars vars, char *img_path, int x, int y)
 {
-	char *path;
-	void *xpm;
+	char	*path;
+	void	*xpm;
 
 	path = "assets/green60.xpm";
 	if (path != img_path)
 	{
-		xpm = mlx_xpm_file_to_image(mlx, path, &img_width, &img_height);
-		mlx_put_image_to_window(mlx, mlx_win, xpm, x, y);
+		xpm = mlx_xpm_file_to_image(vars.mlx, path,
+				&vars.img_width, &vars.img_height);
+		mlx_put_image_to_window(vars.mlx, vars.mlx_win, xpm, x, y);
 	}
-	xpm = mlx_xpm_file_to_image(mlx, img_path, &img_width, &img_height);
-	mlx_put_image_to_window(mlx, mlx_win, xpm, x, y);
-	mlx_destroy_image(mlx, xpm);
+	xpm = mlx_xpm_file_to_image(vars.mlx, img_path,
+			&vars.img_width, &vars.img_height);
+	mlx_put_image_to_window(vars.mlx, vars.mlx_win, xpm, x, y);
+	mlx_destroy_image(vars.mlx, xpm);
 }
 
-void put_imag_to_w(char **map, t_intvars intvar, t_vars var, t_map map_util)
+void	put_imag_to_w(char **map, t_intvars intvar, t_vars var, t_map map_util)
 {
 	map_util.collectible = "assets/collectiblee.xpm";
 	map_util.player = "assets/player.xpm";
@@ -36,27 +38,21 @@ void put_imag_to_w(char **map, t_intvars intvar, t_vars var, t_map map_util)
 	map_util.wall = "";
 	map_util.empty = "assets/green60.xpm";
 	if (map[intvar.j][intvar.i] == '1')
-		apptowindow(var.mlx, var.mlx_win, var.img_width, var.img_height,
-					"assets/d.xpm", map_util.x, map_util.y);
+		apptowindow(var, "assets/d.xpm", map_util.x, map_util.y);
 	else if (map[intvar.j][intvar.i] == '0')
-		apptowindow(var.mlx, var.mlx_win, var.img_width,
-					var.img_height, map_util.empty,
-					map_util.x, map_util.y);
+		apptowindow(var, map_util.empty, map_util.x, map_util.y);
 	else if (map[intvar.j][intvar.i] == 'C')
-		apptowindow(var.mlx, var.mlx_win, var.img_width, var.img_height,
-					map_util.collectible, map_util.x, map_util.y);
+		apptowindow(var, map_util.collectible, map_util.x, map_util.y);
 	else if (map[intvar.j][intvar.i] == 'E')
-		apptowindow(var.mlx, var.mlx_win, var.img_width, var.img_height,
-					map_util.exit, map_util.x, map_util.y);
+		apptowindow(var, map_util.exit, map_util.x, map_util.y);
 	else if (map[intvar.j][intvar.i] == 'P')
-		apptowindow(var.mlx, var.mlx_win, var.img_width, var.img_height,
-					map_util.player, map_util.x, map_util.y);
+		apptowindow(var, map_util.player, map_util.x, map_util.y);
 }
 
-void draw_to_win(t_vars var, char **map)
+void	draw_to_win(t_vars var, char **map)
 {
-	t_intvars intvar;
-	t_map map_util;
+	t_intvars	intvar;
+	t_map		map_util;
 
 	map_util.y = 0;
 	map_util.x = 0;
@@ -77,38 +73,40 @@ void draw_to_win(t_vars var, char **map)
 	}
 }
 
-int main(int ac, char **av)
+void	mlx_tools(t_vars var)
 {
-	t_vars var;
-	t_intvars intvar;
-	int fd;
-	
-	var.map = (char **)malloc(map_lines(av[1]) * sizeof(char *));
-	var.map = get_map(map_lines(av[1]),av[1]);
-	//printf("%d",is_map_valid(var.map));
-	
-	if (is_map_valid(var.map,av[1]))
+	draw_to_win(var, var.map);
+	mlx_key_hook(var.mlx_win, key_hook, &var);
+	mlx_hook(var.mlx_win, 17, 0, ft_exit, &var);
+	mlx_loop(var.mlx);
+}
+
+int	main(int ac, char **av)
+{
+	t_vars		var;
+	t_intvars	intvar;
+
+	if (ac == 2)
 	{
-		if (map_name(av[1]) == 0)
-			ft_printf("The map name is invalid  \n");
-		else
+		var.map = (char **)malloc(map_lines(av[1]) * sizeof(char *));
+		var.map = get_map(map_lines(av[1]), av[1]);
+		if (is_map_valid(var.map, av[1]))
+		{
+			if (map_name(av[1]) == 0)
+				ft_printf("The map name is invalid  \n");
+			else
 			{
 				free(var.map);
-				var.map = get_map(map_lines(av[1]),av[1]);
+				var.map = get_map(map_lines(av[1]), av[1]);
 				intvar.i = 60 * (ft_strlen(var.map[0]) - 1);
 				intvar.j = 60 * map_lines(av[1]);
 				var.mlx = mlx_init();
-				var.mlx_win = mlx_new_window(var.mlx, intvar.i, intvar.j, "So_long");
-				// put_bg(var);
-				draw_to_win(var, var.map);
-				mlx_key_hook(var.mlx_win, key_hook, &var);
-				mlx_hook(var.mlx_win, 17, 0, ft_exit, &var);
-				mlx_loop(var.mlx);
+				var.mlx_win = mlx_new_window(var.mlx,
+						intvar.i, intvar.j, "So_long");
+				mlx_tools(var);
 			}
+		}
 	}
-	else
-        exit (0);
-	
 }
 
 // gcc  -o mlx so_long.c  -lmlx -framework OpenGL -framework AppKit
