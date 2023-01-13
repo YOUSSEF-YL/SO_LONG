@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/13 12:43:04 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/13 18:30:07 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,6 @@
 # include <mlx.h>
 # include "get_next_line.h"
 # include "ft_printf/ft_printf.h"
-
-// typedef struct s_vars
-// {
-// 	void	*mlx;
-// 	void	*win;
-// 	void	*mlx_win;
-// 	void	*relative_path;
-// 	int		img_width;
-// 	int		img_height;
-// 	char	**map;
-// }	t_vars;
 
 typedef struct vars
 {

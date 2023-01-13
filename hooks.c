@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/13 14:55:30 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/13 19:02:01 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	move_to(t_vars *vars, int j, int i, t_intvars intvar)
 			intvar.i * 60, intvar.j * 60);
 		p = mlx_xpm_file_to_image(vars->mlx, "assets/player.xpm", &w, &w);
 		mlx_put_image_to_window(vars->mlx, vars->mlx_win, p, i * 60, j * 60);
-		ft_printf("%s : %d\n", "moves :", ++cc);
+		ft_printf("%s : %d\n", "moves ", ++cc);
 	}
 }
 
