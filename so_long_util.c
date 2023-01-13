@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:04:43 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/11 18:41:02 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/13 12:41:11 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,12 @@ char	**get_map(int lines, char *map_path)
 	return (map);
 }
 
-int	ft_exit(void)
+int	ft_exit(t_vars *vars)
 {
+	mlx_destroy_window(vars->mlx, vars->mlx_win);
+	freeall(vars);
 	exit(0);
 }
-
-// void	put_bg(t_vars var)
-// {
-// 	void	*xpm;
-// 	char	*bg;
-
-// 	bg = "assets/bg.xpm";
-// 	xpm = mlx_xpm_file_to_image(var.mlx, bg, &var.img_width, &var.img_height);
-// 	mlx_put_image_to_window(var.mlx, var.mlx_win, xpm, 0, 0);
-// }
 
 int	map_name(char *name )
 {
@@ -86,12 +78,12 @@ int	is_map_valid(char **map, char *map_path)
 		ft_printf("Error:\n The map must be surrounded by walls \n");
 	if (map_req(map) == 0)
 		ft_printf("Error:\n The map has to be"
-			"constructed with required components\n");
+			" constructed with required components\n");
 	if (check_liens_l(map, map_path) == 0)
 		ft_printf("Error:\n The map must be rectangular \n");
 	if (check_map_compos(map) == 0)
 		ft_printf("Error:\nThe map has to be constructed"
-			"with required components only \n");
+			" with required components only \n");
 	if ((map_req(map) == 1) && (check_liens_l(map, map_path) == 1)
 		&& (check_walls(map, map_path) == 1) && (check_map_compos(map) == 1))
 	{

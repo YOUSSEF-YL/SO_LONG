@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/11 18:18:59 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/13 12:43:04 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@
 # include "get_next_line.h"
 # include "ft_printf/ft_printf.h"
 
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*win;
-	void	*mlx_win;
-	void	*relative_path;
-	int		img_width;
-	int		img_height;
-	char	**map;
-}	t_vars;
+// typedef struct s_vars
+// {
+// 	void	*mlx;
+// 	void	*win;
+// 	void	*mlx_win;
+// 	void	*relative_path;
+// 	int		img_width;
+// 	int		img_height;
+// 	char	**map;
+// }	t_vars;
 
 typedef struct vars
 {
@@ -55,7 +55,7 @@ typedef struct t_map
 }	t_map;
 
 int				is_map_valid(char **map, char *map_path);
-int				ft_exit(void);
+int				ft_exit(t_vars *var);
 int				check_liens_l(char **map, char *map_path);
 int				map_lines(char *map);
 int				check_walls(char **map, char *map_path);

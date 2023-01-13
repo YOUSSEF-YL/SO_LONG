@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/11 20:12:28 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/13 14:57:36 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,21 @@ void	apptowindow(t_vars vars, char *img_path, int x, int y)
 	{
 		xpm = mlx_xpm_file_to_image(vars.mlx, path,
 				&vars.img_width, &vars.img_height);
+		if (!xpm)
+		{
+			ft_printf("Error :\n mising assets");
+			ft_exit(&vars);
+		}
 		mlx_put_image_to_window(vars.mlx, vars.mlx_win, xpm, x, y);
 	}
 	xpm = mlx_xpm_file_to_image(vars.mlx, img_path,
 			&vars.img_width, &vars.img_height);
+	if (!xpm)
+	{
+		ft_printf("Error :\n mising assets");
+		free(vars.map);
+		ft_exit(&vars);
+	}
 	mlx_put_image_to_window(vars.mlx, vars.mlx_win, xpm, x, y);
 	mlx_destroy_image(vars.mlx, xpm);
 }
@@ -35,10 +46,10 @@ void	put_imag_to_w(char **map, t_intvars intvar, t_vars var, t_map map_util)
 	map_util.collectible = "assets/collectiblee.xpm";
 	map_util.player = "assets/player.xpm";
 	map_util.exit = "assets/door.xpm";
-	map_util.wall = "";
+	map_util.wall = "assets/d.xpm";
 	map_util.empty = "assets/green60.xpm";
 	if (map[intvar.j][intvar.i] == '1')
-		apptowindow(var, "assets/d.xpm", map_util.x, map_util.y);
+		apptowindow(var, map_util.wall, map_util.x, map_util.y);
 	else if (map[intvar.j][intvar.i] == '0')
 		apptowindow(var, map_util.empty, map_util.x, map_util.y);
 	else if (map[intvar.j][intvar.i] == 'C')

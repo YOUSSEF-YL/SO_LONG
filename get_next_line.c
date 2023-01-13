@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:52:56 by ybachar           #+#    #+#             */
-/*   Updated: 2022/12/06 14:35:30 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/13 12:48:32 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,30 +68,7 @@ char	*get_next_line(int fd)
 	return (res);
 }
 
-// int main()
-// {
-//     char *str;
-//     int fd = open("foo.txt", O_RDONLY);
-//     // str = get_next_line(fd);
-//     // printf("%s", str);
-
-//     while (str)
-//     {
-// 		str = get_next_line(fd);
-// 		printf("%s", str);
-// 	}
-
-//     // str = get_next_line(fd);
-//     // printf("%s", str);
-
-//     // str = get_next_line(fd);
-//     // printf("%s", str);
-//     // str = get_next_line(fd);
-//     // printf("%s", str);
-
-//     // // str = get_next_line(fd);
-//     // printf("%s", get_next_line(fd));
-//     // printf("%s", get_next_line(fd));
-//     // //printf("%s\n", get_next_line(fd));
-//     // printf("%s", get_next_line(fd));
-// }
+void	freeall(t_vars *vars)
+{
+	free(vars->map);
+}

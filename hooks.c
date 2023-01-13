@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/11 18:24:56 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/13 14:55:30 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	move_to(t_vars *vars, int j, int i, t_intvars intvar)
 		{
 			vars->map[j][i] = vars->map[intvar.j][intvar.i];
 			ft_printf("%s : %d\n", "movse", ++cc);
-			exit(0);
+			ft_exit(vars);
 		}
 	}
 	if (vars->map[j][i] != 'E')
@@ -80,7 +80,7 @@ void	move_to(t_vars *vars, int j, int i, t_intvars intvar)
 			intvar.i * 60, intvar.j * 60);
 		p = mlx_xpm_file_to_image(vars->mlx, "assets/player.xpm", &w, &w);
 		mlx_put_image_to_window(vars->mlx, vars->mlx_win, p, i * 60, j * 60);
-		ft_printf("%s : %d\n", "movse", ++cc);
+		ft_printf("%s : %d\n", "moves :", ++cc);
 	}
 }
 
@@ -102,7 +102,7 @@ int	key_hook(int keycode, t_vars *vars)
 		[intvar.j][intvar.i + 1] != '1')
 		move_to(vars, intvar.j, intvar.i + 1, intvar);
 	else if (keycode == 53)
-		exit(0);
+		ft_exit(vars);
 	return (0);
 }
 
