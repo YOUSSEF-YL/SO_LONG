@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 12:26:41 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/13 19:02:01 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/15 00:20:34 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	move_to(t_vars *vars, int j, int i, t_intvars intvar)
 		if (vars->map[j][i] == 'E')
 		{
 			vars->map[j][i] = vars->map[intvar.j][intvar.i];
-			ft_printf("%s : %d\n", "movse", ++cc);
+			ft_printf("%s : %d\n %s", "movse", ++cc, "~~~~YOU WIN~~~~");
 			ft_exit(vars);
 		}
 	}
@@ -119,8 +119,7 @@ int	check_map_compos(char **map)
 		while (map[j][i])
 		{
 			if (map[j][i] && map[j][i] != '1' && map[j][i] != 'E' && map[j][i]
-				!= 'P' && map[j][i] != 'C' && map[j][i]
-					!= '0' && map[j][i] != '\n')
+	!= 'P' && map[j][i] != 'C' && map[j][i] != '0' && map[j][i] != '\n')
 				return (0);
 			i++;
 		}

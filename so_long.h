@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/13 18:30:07 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/14 23:34:31 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int				check_walls(char **map, char *map_path);
 int				map_req(char **map);
 int				key_hook(int keycode, t_vars *vars);
 int				check_map_compos(char **map);
-char			**get_map(int fd, char *map_path);
+char			**get_map(char *map_path);
 char			**check_path(char **map, int j, int i);
 void			draw_to_win(t_vars var, char **map);
 void			put_bg(t_vars var);

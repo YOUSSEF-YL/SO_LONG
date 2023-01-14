@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2023/01/13 12:57:18 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/15 00:45:05 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_path_valid(char **map)
 		var.i = 0;
 		while (map[var.j][var.i])
 		{
-			if (map[var.j][var.i] == 'C')
+			if (map[var.j][var.i] == 'C' || map[var.j][var.i] == 'E')
 				return (0);
 			var.i++;
 		}
@@ -36,11 +36,13 @@ int	check_liens_l(char **map, char *map_path)
 {
 	t_intvars	intvar;
 
-	intvar.i = 1;
+	intvar.i = 0;
 	intvar.j = map_lines(map_path) - 1;
 	while (intvar.i < intvar.j)
 	{
 		if (ft_strlen(map[0]) - 1 != ft_strlen(map[intvar.i]) - 1)
+			return (0);
+		if (ft_strlen(map[0]) - 1 != ft_strlen(map[intvar.j]))
 			return (0);
 		intvar.i++;
 	}
@@ -77,22 +79,22 @@ char	**check_path(char **map, int j, int i)
 {
 	if (map[j][i] == 'P')
 	{
-		if (map[j +1][i] == '0' || map[j +1][i] == 'C' )
+		if (map[j +1][i] == '0' || map[j +1][i] == 'C' || map[j][i -1] == 'E')
 		{
 			map[j + 1][i] = 'P';
 			check_path(map, j + 1, i);
 		}
-		if (map[j -1][i] == '0' || map[j -1][i] == 'C' )
+		if (map[j -1][i] == '0' || map[j -1][i] == 'C' || map[j][i -1] == 'E' )
 		{
 			map[j -1][i] = 'P';
 			check_path(map, j - 1, i);
 		}
-		if (map[j][i +1] == '0' || map[j][i +1] == 'C' )
+		if (map[j][i +1] == '0' || map[j][i +1] == 'C' || map[j][i -1] == 'E')
 		{
 			map[j][i +1] = 'P';
 			check_path(map, j, i + 1);
 		}
-		if (map[j][i -1] == '0' || map[j][i -1] == 'C' )
+		if (map[j][i -1] == '0' || map[j][i -1] == 'C' || map[j][i -1] == 'E')
 		{
 			map[j][i -1] = 'P';
 			check_path(map, j, i - 1);

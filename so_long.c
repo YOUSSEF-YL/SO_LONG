@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/13 14:57:36 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/15 00:30:44 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ void	draw_to_win(t_vars var, char **map)
 	map_util.x = 0;
 	intvar.j = 0;
 	intvar.i = 0;
-	while (map[intvar.j])
+	while (var.map[intvar.j])
 	{
 		intvar.i = 0;
-		while (map[intvar.j][intvar.i])
+		while (var.map[intvar.j][intvar.i])
 		{
 			put_imag_to_w(map, intvar, var, map_util);
 			intvar.i++;
@@ -82,10 +82,14 @@ void	draw_to_win(t_vars var, char **map)
 		map_util.y = map_util.y + 60;
 		intvar.j++;
 	}
+	return ;
 }
 
-void	mlx_tools(t_vars var)
+void	mlx_tools(t_vars var, t_intvars intvar)
 {
+	var.mlx = mlx_init();
+				var.mlx_win = mlx_new_window(var.mlx,
+			intvar.i, intvar.j, "So_long");
 	draw_to_win(var, var.map);
 	mlx_key_hook(var.mlx_win, key_hook, &var);
 	mlx_hook(var.mlx_win, 17, 0, ft_exit, &var);
@@ -100,21 +104,21 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		var.map = (char **)malloc(map_lines(av[1]) * sizeof(char *));
-		var.map = get_map(map_lines(av[1]), av[1]);
-		if (is_map_valid(var.map, av[1]))
+		var.map = get_map(av[1]);
+		if (map_name(av[1]) == 0)
 		{
-			if (map_name(av[1]) == 0)
-				ft_printf("The map name is invalid  \n");
-			else
+			ft_printf("The map name is invalid  \n");
+			free(var.map);
+		}
+		else
+		{
+			if (is_map_valid(var.map, av[1]))
 			{
 				free(var.map);
-				var.map = get_map(map_lines(av[1]), av[1]);
-				intvar.i = 60 * (ft_strlen(var.map[0]) - 1);
-				intvar.j = 60 * map_lines(av[1]);
-				var.mlx = mlx_init();
-				var.mlx_win = mlx_new_window(var.mlx,
-						intvar.i, intvar.j, "So_long");
-				mlx_tools(var);
+					var.map = get_map(av[1]);
+					intvar.i = 60 * (ft_strlen(var.map[0]) - 1);
+					intvar.j = 60 * map_lines(av[1]) - 1;
+				mlx_tools(var, intvar);
 			}
 		}
 	}

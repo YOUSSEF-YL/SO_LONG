@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:04:43 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/13 12:41:11 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/15 00:15:51 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,22 @@ int	map_lines(char	*map)
 	return (i);
 }
 
-char	**get_map(int lines, char *map_path)
+char	**get_map(char *map_path)
 {
 	char	**map;
 	int		i;
 	int		fd;
 
 	i = 0;
-	map = (char **)malloc(map_lines(map_path) * sizeof(char *));
+	map = (char **)malloc((map_lines(map_path)+1) * sizeof(char *));
 	fd = open(map_path, O_RDONLY);
-	while (i <= lines - 1)
+	map[i] = get_next_line(fd);
+	while (map[i++])
 	{
 		map[i] = get_next_line(fd);
-		i++;
 	}
 	close(fd);
-	map[map_lines(map_path)] = 0;
+	map[i] = 0;
 	return (map);
 }
 
@@ -92,5 +92,6 @@ int	is_map_valid(char **map, char *map_path)
 		else
 			return (1);
 	}
+	free(map);
 	return (0);
 }
