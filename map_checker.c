@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 19:29:16 by yiachar           #+#    #+#             */
-/*   Updated: 2023/01/15 00:45:05 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/15 13:55:19 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_path_valid(char **map)
 		var.i = 0;
 		while (map[var.j][var.i])
 		{
-			if (map[var.j][var.i] == 'C' || map[var.j][var.i] == 'E')
+			if (map[var.j][var.i] == 'C' )
 				return (0);
 			var.i++;
 		}
@@ -79,22 +79,22 @@ char	**check_path(char **map, int j, int i)
 {
 	if (map[j][i] == 'P')
 	{
-		if (map[j +1][i] == '0' || map[j +1][i] == 'C' || map[j][i -1] == 'E')
+		if (map[j +1][i] == '0' || map[j +1][i] == 'C' )
 		{
 			map[j + 1][i] = 'P';
 			check_path(map, j + 1, i);
 		}
-		if (map[j -1][i] == '0' || map[j -1][i] == 'C' || map[j][i -1] == 'E' )
+		if (map[j -1][i] == '0' || map[j -1][i] == 'C' )
 		{
 			map[j -1][i] = 'P';
 			check_path(map, j - 1, i);
 		}
-		if (map[j][i +1] == '0' || map[j][i +1] == 'C' || map[j][i -1] == 'E')
+		if (map[j][i +1] == '0' || map[j][i +1] == 'C' )
 		{
 			map[j][i +1] = 'P';
 			check_path(map, j, i + 1);
 		}
-		if (map[j][i -1] == '0' || map[j][i -1] == 'C' || map[j][i -1] == 'E')
+		if (map[j][i -1] == '0' || map[j][i -1] == 'C' )
 		{
 			map[j][i -1] = 'P';
 			check_path(map, j, i - 1);
