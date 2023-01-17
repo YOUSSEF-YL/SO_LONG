@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:04:43 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/15 00:15:51 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/17 22:13:20 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@ int	map_lines(char	*map)
 	int		i;
 
 	fd = open(map, O_RDONLY);
-	str = get_next_line(fd);
 	i = 0;
-	while (str)
+	while (1)
 	{
-		i++;
 		str = get_next_line(fd);
+		if (str == '\0')
+			break ;
+		i++;
+		free(str);
 	}
 	close(fd);
-	free(str);
 	return (i);
 }
 
@@ -40,20 +41,24 @@ char	**get_map(char *map_path)
 	i = 0;
 	map = (char **)malloc((map_lines(map_path)+1) * sizeof(char *));
 	fd = open(map_path, O_RDONLY);
-	map[i] = get_next_line(fd);
-	while (map[i++])
+	while (1)
 	{
 		map[i] = get_next_line(fd);
+		if (map[i] == '\0')
+			break ;
+		i++;
 	}
-	close(fd);
-	map[i] = 0;
+	if (!map)
+		exit(0);
+	close (fd);
 	return (map);
 }
 
 int	ft_exit(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->mlx_win);
-	freeall(vars);
+	free_map(vars->map);
+	free(vars->map);
 	exit(0);
 }
 
@@ -67,31 +72,4 @@ int	map_name(char *name )
 	if (name[i -2] != 'b' || name[i - 3] != '.' )
 		return (0);
 	return (1);
-}
-
-int	is_map_valid(char **map, char *map_path)
-{
-	t_intvars	intvar ;
-
-	intvar = get_plyer_pos(map);
-	if (check_walls(map, map_path) == 0)
-		ft_printf("Error:\n The map must be surrounded by walls \n");
-	if (map_req(map) == 0)
-		ft_printf("Error:\n The map has to be"
-			" constructed with required components\n");
-	if (check_liens_l(map, map_path) == 0)
-		ft_printf("Error:\n The map must be rectangular \n");
-	if (check_map_compos(map) == 0)
-		ft_printf("Error:\nThe map has to be constructed"
-			" with required components only \n");
-	if ((map_req(map) == 1) && (check_liens_l(map, map_path) == 1)
-		&& (check_walls(map, map_path) == 1) && (check_map_compos(map) == 1))
-	{
-		if (is_path_valid(check_path(map, intvar.j, intvar.i)) == 0)
-			printf("Error:\n There is no valid path in the map.\n");
-		else
-			return (1);
-	}
-	free(map);
-	return (0);
 }

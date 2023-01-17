@@ -6,12 +6,12 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/15 00:30:44 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/17 22:12:01 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-// void *mlx, void *mlx_win, int img_width, int img_height
+
 void	apptowindow(t_vars vars, char *img_path, int x, int y)
 {
 	char	*path;
@@ -34,7 +34,6 @@ void	apptowindow(t_vars vars, char *img_path, int x, int y)
 	if (!xpm)
 	{
 		ft_printf("Error :\n mising assets");
-		free(vars.map);
 		ft_exit(&vars);
 	}
 	mlx_put_image_to_window(vars.mlx, vars.mlx_win, xpm, x, y);
@@ -82,7 +81,6 @@ void	draw_to_win(t_vars var, char **map)
 		map_util.y = map_util.y + 60;
 		intvar.j++;
 	}
-	return ;
 }
 
 void	mlx_tools(t_vars var, t_intvars intvar)
@@ -103,21 +101,22 @@ int	main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		var.map = (char **)malloc(map_lines(av[1]) * sizeof(char *));
 		var.map = get_map(av[1]);
 		if (map_name(av[1]) == 0)
 		{
 			ft_printf("The map name is invalid  \n");
+			free_map(var.map);
 			free(var.map);
 		}
 		else
 		{
 			if (is_map_valid(var.map, av[1]))
 			{
+				free_map(var.map);
 				free(var.map);
-					var.map = get_map(av[1]);
-					intvar.i = 60 * (ft_strlen(var.map[0]) - 1);
-					intvar.j = 60 * map_lines(av[1]) - 1;
+				var.map = get_map(av[1]);
+				intvar.i = 60 * (ft_strlen(var.map[0]) - 1);
+				intvar.j = 60 * map_lines(av[1]) - 1;
 				mlx_tools(var, intvar);
 			}
 		}

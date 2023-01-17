@@ -6,11 +6,11 @@
 #    By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 19:42:52 by ybachar           #+#    #+#              #
-#    Updated: 2023/01/11 19:58:24 by ybachar          ###   ########.fr        #
+#    Updated: 2023/01/16 21:52:20 by ybachar          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS 	= get_next_line.c get_next_line_utils.c hooks.c map_checker.c so_long_util.c so_long.c
+SRCS 	= get_next_line.c get_next_line_utils.c hooks.c map_checker.c so_long_util.c so_long.c so_long_util_t.c
 
 OBJS	= ${SRCS:.c=.o}
 

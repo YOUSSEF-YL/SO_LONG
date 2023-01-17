@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:54:28 by ybachar           #+#    #+#             */
-/*   Updated: 2022/11/09 15:00:22 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/17 11:01:37 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,3 @@ int	ft_printf(const char *mode, ...)
 	va_end(args);
 	return (count);
 }
-// #include <limits.h>
-// #include <stdio.h>
-// int main()
-// {
-// 	ft_printf("%s\n",NULL);
-// 	//ft_printf(" %s %s \n","*","-");
-
-// 	printf("%s\n",NULL );
-// 	//printf(" %s %s \n","*","-");
-// }

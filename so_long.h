@@ -6,18 +6,15 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/14 23:34:31 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/17 21:01:52 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include <unistd.h>
-# include <fcntl.h>
-# include <errno.h>
 # include <string.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <mlx.h>
 # include "get_next_line.h"
 # include "ft_printf/ft_printf.h"
@@ -58,5 +55,6 @@ void			put_bg(t_vars var);
 t_intvars		get_plyer_pos(char **map);
 int				is_path_valid(char **map);
 int				map_name(char *name );
+void			free_map(char **map);
 
 #endif

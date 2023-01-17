@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:52:56 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/13 12:48:32 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/17 20:13:41 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,33 @@ char	*get_next_line(int fd)
 void	freeall(t_vars *vars)
 {
 	free(vars->map);
+}
+
+int	check_path_e(char **map, int j, int i)
+{
+	if (map[j][i] == 'E')
+	{
+		if (map[j + 1][i] == 'P')
+		{
+			free(map);
+			return (1);
+		}
+		if (map[j -1][i] == 'P')
+		{
+			free(map);
+			return (1);
+		}
+		if (map[j][i +1] == 'P')
+		{
+			free(map);
+			return (1);
+		}
+		if (map[j][i -1] == 'P')
+		{
+			free(map);
+			return (1);
+		}
+	}
+	free(map);
+	return (0);
 }
