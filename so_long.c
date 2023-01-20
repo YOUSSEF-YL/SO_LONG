@@ -6,11 +6,12 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:44 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/17 22:12:01 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/20 17:13:55 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 void	apptowindow(t_vars vars, char *img_path, int x, int y)
 {
@@ -105,20 +106,20 @@ int	main(int ac, char **av)
 		if (map_name(av[1]) == 0)
 		{
 			ft_printf("The map name is invalid  \n");
-			free_map(var.map);
-			free(var.map);
+			start(var.map);
 		}
 		else
 		{
 			if (is_map_valid(var.map, av[1]))
 			{
-				free_map(var.map);
-				free(var.map);
+				start(var.map);
 				var.map = get_map(av[1]);
 				intvar.i = 60 * (ft_strlen(var.map[0]) - 1);
 				intvar.j = 60 * map_lines(av[1]) - 1;
 				mlx_tools(var, intvar);
 			}
+			else
+				free_map(var.map);
 		}
 	}
 }

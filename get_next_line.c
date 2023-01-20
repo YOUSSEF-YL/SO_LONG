@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:52:56 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/17 20:13:41 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/19 00:42:02 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,25 +79,20 @@ int	check_path_e(char **map, int j, int i)
 	{
 		if (map[j + 1][i] == 'P')
 		{
-			free(map);
 			return (1);
 		}
 		if (map[j -1][i] == 'P')
 		{
-			free(map);
 			return (1);
 		}
 		if (map[j][i +1] == 'P')
 		{
-			free(map);
 			return (1);
 		}
 		if (map[j][i -1] == 'P')
 		{
-			free(map);
 			return (1);
 		}
 	}
-	free(map);
 	return (0);
 }

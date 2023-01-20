@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:04:43 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/17 22:07:44 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/20 17:12:44 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,15 @@ int	is_map_valid(char **map, char *map_path)
 			ft_printf("Error:\n There is no valid path in the map.\n");
 		else
 		{
-			return (1);
+			if (check_path_e(check_path(map, intvar.j, intvar.i)
+					, intvar_e.j, intvar_e.i) == 0)
+			{
+				ft_printf("Error:\n There is no valid path in the map.\n");
+			}
+			else
+				return (1);
 		}
 	}
-	if (check_path_e(check_path(map, intvar.j, intvar.i)
-			, intvar_e.j, intvar_e.i) == 0)
-		ft_printf("Error:\n There is no valid path in the map.\n");
 	return (0);
 }
 
@@ -82,4 +85,10 @@ void	free_map(char **map)
 		free(map[i]);
 		i++;
 	}
+}
+
+void	start(char **map)
+{
+	free_map(map);
+	free(map);
 }

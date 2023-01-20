@@ -6,7 +6,7 @@
 /*   By: ybachar <ybachar@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 14:59:50 by ybachar           #+#    #+#             */
-/*   Updated: 2023/01/17 21:01:52 by ybachar          ###   ########.fr       */
+/*   Updated: 2023/01/20 17:13:09 by ybachar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ t_intvars		get_plyer_pos(char **map);
 int				is_path_valid(char **map);
 int				map_name(char *name );
 void			free_map(char **map);
+void			start(char **map);
+int				check_path_e(char **map, int j, int i);
 
-#endif
+#endif 
